@@ -1,345 +1,537 @@
-# MVP-Konzept: KI-gestützte Wissensplattform für Bauprojekte
+# MVP-Konzept: ImpactView – Personalisierte Wissensvermittlung für Bauprojekte
 
-**Arbeitstitel:** ImpactView  
-**Branche / Demo:** Bauwesen & Gebäudetechnik – Sanierung Bürogebäude „Campus Nord“  
-**Ziel:** Überzeugender Hackathon-MVP mit einem klaren Entscheidungsszenario und personalisierten Wissensansichten (kein Chatbot).
-
----
-
-## 1. Kurzbeschreibung des MVPs
-
-ImpactView liest vorhandene Projektdokumente (Meeting Notes, Projektbeschreibung, Aufgaben, Zuständigkeiten) ein, erkennt daraus eine zentrale Projektentscheidung und zeigt Mitarbeitern **automatisch generierte, interaktive Wissensansichten** – angepasst an Fachbereich und Kenntnisniveau.
-
-**Kernversprechen der Demo:**  
-Ein Mitarbeiter öffnet das Projekt, sieht die Entscheidung „Lüftungsanlage verlegen“, versteht auf einen Blick, was das für *seine* Arbeit bedeutet, und kann Auswirkungen und Zusammenhänge visuell erkunden – ohne Protokolle manuell durchsuchen zu müssen.
-
-**Was der MVP bewusst nicht ist:** kein freier Chat, keine Live-Anbindung an DMS/ERP, kein Multi-Projekt-Dashboard, keine Benutzerverwaltung.
+**Version:** 1.1 – überarbeitetes MVP-Konzept  
+**Branche / Demo:** Bauwesen & Gebäudetechnik – Sanierung des fiktiven Bürogebäudes „Campus Nord“  
+**Ziel:** Ein funktionsfähiger Hackathon-MVP, der aus vorhandenen Projektinformationen eine Entscheidung erkennt und verschiedenen Mitarbeitern **rollen- und wissensstandabhängige, interaktive Wissensansichten** bietet.  
+**Produktkategorie:** Knowledge-to-Understanding, nicht primär Bauprojektmanagement oder Chatbot.  
+**Status:** Grundlage für Beispieldaten, Interface-Design und Implementierung; keine Festlegung auf einen Tech-Stack.
 
 ---
 
-## 2. Demo-Szenario: Campus Nord – Lüftungsverlegung
+## 1. Kurzbeschreibung und Produktfokus
+
+ImpactView unterstützt Mitarbeiter dabei, **Entscheidungen, Änderungen und die Arbeit anderer Fachbereiche zu verstehen**, ohne dafür zahlreiche Besprechungsprotokolle, Aufgaben und Fachunterlagen selbst zusammenführen zu müssen.
+
+Die Anwendung analysiert vorhandene Projektinformationen, erkennt dokumentierte Entscheidungen und verknüpft diese mit beteiligten Fachbereichen, Aufgaben und technischen Hintergründen. Daraus entstehen **verständliche Wissensansichten**, deren **Informationsauswahl** sich an der Rolle und deren **Erklärungstiefe** sich am Vorwissen des Nutzers orientiert.
+
+### 1.1 Zentrale Nutzerfragen
+
+Jede relevante Detailansicht sollte fünf Fragen beantworten:
+
+1. **Was ist passiert?** – Welche Entscheidung oder Änderung liegt vor?
+2. **Warum?** – Welche Gründe und bisherigen Planungen stehen dahinter?
+3. **Wie hängt das mit meiner Arbeit zusammen?** – Welche anderen Fachbereiche, Aufgaben und Abhängigkeiten sind relevant?
+4. **Was muss ich darüber wissen?** – Welche Fachbegriffe oder technischen Zusammenhänge fehlen mir zum Verständnis?
+5. **Was bedeutet das für mich?** – Welche dokumentierten Aufgaben, möglichen Auswirkungen und offenen Prüfungen gibt es?
+
+### 1.2 Kernversprechen der Demo
+
+Eine Person öffnet „Campus Nord“ und sieht sofort, dass die Lüftungsanlage verlegt werden soll. Sie wählt etwa **Einkauf / Einsteiger** und erhält eine verständliche Erklärung der Entscheidung, die mögliche Beschaffungsrelevanz, offene Fragen und eine optionale kurze Lernvertiefung. Nach dem Wechsel zu **Elektrotechnik / erfahren** werden bei **gleicher Faktenbasis** andere Aspekte, präzisere Fachbegriffe und technische Abhängigkeiten hervorgehoben.
+
+### 1.3 Klare Abgrenzung
+
+- **Kein Chat als Hauptoberfläche:** Informationen erscheinen proaktiv in Karten und Detailansichten. Rückfragen sind optional und nicht Bestandteil des ersten MVPs.
+- **Kein vollständiges Bauprojektmanagement:** ImpactView führt keine Freigaben, Nachträge, Bauzeitenplan-Neuberechnungen oder Auftragsänderungen aus.
+- **Keine automatisch autorisierten Arbeitsanweisungen:** Die KI kann Zusammenhänge und Prüfbedarf erläutern, aber keine freigegebenen technischen Ausführungsanweisungen ersetzen.
+- **Kein bloß statisches Dashboard:** Mindestens eine echte KI-Extraktion und eine dynamische, rollen-/niveauabhängige Erklärung müssen funktionieren.
+
+---
+
+## 2. Demo-Szenario: Campus Nord – Verlegung der Lüftungsanlage
 
 ### 2.1 Projektziele und Ausgangssituation
 
 | Feld | Inhalt |
-|------|--------|
+|---|---|
 | **Projekt** | Generalsanierung Bürogebäude „Campus Nord“, Baujahr 1987, 4 Geschosse, ca. 6.200 m² BGF |
-| **Ziel** | Modernisierung TGA (Lüftung, Elektro, Brandschutz), energetische Sanierung, Weiterbetrieb teilweise während der Bauzeit |
-| **Zeitraum** | Geplant: 14 Monate; aktuell Woche 11 / Phase Rohmontage TGA |
-| **Auftraggeber** | Eigentümergesellschaft Campus Nord GmbH |
-| **Generalplaner / Bauleitung** | intern koordiniert; Fachplaner Lüftung & Elektro beauftragt |
+| **Ziel** | Modernisierung TGA (Lüftung, Elektro, Brandschutz), energetische Sanierung, teilweiser Weiterbetrieb während der Bauzeit |
+| **Zeitraum** | Geplant: 14 Monate; aktuell Projektwoche 11 / Rohmontage TGA |
+| **Auftraggeber** | Fiktive Campus Nord GmbH |
+| **Bauleitung / Planung** | Projektintern koordiniert; Fachplaner Lüftung und Elektrotechnik beauftragt |
 
-**Ausgangssituation vor der Entscheidung:**  
-Die zentrale Lüftungsanlage (RLT) war im ursprünglichen Entwurf im Technikraum **TR-B2** im Untergeschoss vorgesehen. TR-B2 liegt nahe den Haupttrassen für Zuluft/Abluft und war in den Bestandsplänen als Technikfläche ausgewiesen.
+Der ursprüngliche Entwurf sieht die zentrale Raumlufttechnische Anlage (**RLT**) in **Technikraum TR-B2** im Untergeschoss vor. TR-B2 liegt nahe den Haupttrassen der Zuluft und Abluft.
 
-### 2.2 Beteiligte Fachbereiche und Verantwortlichkeiten
+### 2.2 Beteiligte Fachbereiche
 
-| Fachbereich | Rolle im Projekt | Typische Aufgaben |
-|-------------|------------------|-------------------|
-| **Bauleitung** | Koordination Termine, Flächen, Gewerke, Baustellenlogistik | Ablaufplanung, Freigaben, Konfliktlösung zwischen Gewerken, Meldung an AG |
-| **Elektrotechnik** | Stark-/Schwachstrom, Schaltanlagen, Kabelwege, Anbindung TGA | Planung und Ausführung Elektroanschlüsse der RLT, Brandschutzklappen-Ansteuerung, Mess-/Steuerleitungen |
-| **Einkauf** | Beschaffung Anlagen, Komponenten, Nachträge | Ausschreibung/Bestellung RLT-Komponenten, Liefertermine, Kostenänderungen, Lieferantenkommunikation |
+| Fachbereich | Zuständigkeit | Was andere Teams davon wissen müssen |
+|---|---|---|
+| **Bauleitung** | Gewerke, Termine, Abstimmungen, Klärungen, Kommunikation an Auftraggeber | Welche technischen und beschaffungsbezogenen Fragen noch offen sind und welche Koordination erforderlich wird |
+| **Elektrotechnik** | Elektrische Versorgung, Leitungswege, Schalt- und Steueranschlüsse der RLT | Wo die Anlage installiert werden soll und welche Lüftungs-/Planungsentscheidungen die eigene Planung betreffen |
+| **Einkauf** | Geräteanfragen, Komponentenbeschaffung, Liefertermine und mögliche Änderungsbedarfe | Ob technische Spezifikationen, Lieferumfang oder Termine tatsächlich geändert werden müssen |
 
-### 2.3 Ursprüngliche Planung (dokumentierte Fakten)
+### 2.3 Ursprüngliche Planung (in Demo-Quellen zu dokumentieren)
 
-- RLT-Standort: **Technikraum TR-B2** (UG)
-- Leistungsdaten (laut Projektbeschreibung): ca. 18.000 m³/h, zentral
-- Elektro: Zuleitung und Steuerung von Schaltschrank **SS-UG-03** zu TR-B2 vorgesehen
-- Einkauf: RLT-Gerät und Kanäle bereits angefragt; Liefertermin Gerät KW 18 avisiert (noch nicht verbindlich bestätigt in den Demo-Quellen)
-- Bauleitung: Montagefenster RLT in KW 19–21 eingeplant
+- Geplanter RLT-Standort: **TR-B2** (Untergeschoss).
+- Geplanter Volumenstrom: etwa **18.000 m³/h**.
+- Elektrische Zuleitung/Steuerung: ursprünglich vom Schaltschrank **SS-UG-03** in Richtung TR-B2 vorgesehen.
+- RLT-Gerät und Kanäle sind angefragt; Liefertermin **KW 18** wurde genannt, aber **noch nicht verbindlich bestätigt**.
+- Montagefenster der RLT: **KW 19–21** im bisherigen Plan vorgesehen.
 
-### 2.4 Die zentrale Entscheidung
+Diese Aussagen werden erst dann als „belegt“ angezeigt, wenn sie in den vorbereiteten Demo-Unterlagen tatsächlich enthalten sind.
 
-**Entscheidung (aus Projektbesprechung KW 11):**  
-Die Lüftungsanlage wird **nicht** in TR-B2, sondern in **Technikraum TR-C1** (UG, Ostflügel) installiert.
+### 2.4 Zentrale Entscheidung aus der Projektbesprechung KW 11
 
-**Begründung (laut Meeting Notes):**  
-Bei der Bestandsaufnahme vor Ort stellte sich heraus, dass TR-B2 durch eine nachträglich eingebaute Server-Nische und zusätzliche Brandschutztüren **räumlich zu eng** für die vorgesehene RLT-Einheit inkl. Wartungsgängen ist. Eine Verkleinerung des Geräts würde die geforderten Luftmengen laut Fachplaner nicht sicherstellen. TR-C1 bietet ausreichend Aufstellfläche; die Kanalführung verlängert sich.
+**Im Meeting beschlossen:** Die RLT soll statt in **TR-B2** in **TR-C1** (Untergeschoss, Ostflügel) installiert werden.
 
-**Entscheider / Protokoll:** Bauleitung (Leitung), Fachplaner Lüftung, Vertreter Elektro und Einkauf anwesend.
+**Dokumentierte Begründung im Demo-Protokoll:** Eine nachträglich eingebaute Server-Nische und zusätzliche Brandschutztüren begrenzen den nutzbaren Raum in TR-B2. Die vorgesehene Anlage samt Wartungsflächen passt dort nicht ausreichend hinein; laut Lüftungsfachplanung wäre ein kleineres Gerät für die vorgesehene Luftmenge ungeeignet. TR-C1 bietet mehr Aufstellfläche, allerdings mit längerer Kanalführung.
 
-### 2.5 Mögliche Auswirkungen auf Fachbereiche
+**Wichtige Statusabgrenzung:** „Im Meeting beschlossen“ bedeutet **nicht automatisch**, dass alle geänderten Fachpläne oder die Ausführung bereits formal freigegeben wurden. Der **Freigabestatus der aktualisierten Elektro-/Montageplanung bleibt offen**, sofern keine eigenständige Quelle die Freigabe bestätigt.
 
-> **Wichtig für Demo und KI-Logik:** Nur klar in Quellen genannte Fakten gelten als bestätigt. Auswirkungen auf andere Gewerke sind teils **explizit genannt**, teils **plausible Ableitungen** – und müssen in der UI als solche gekennzeichnet werden (siehe Abschnitt 7).
+**Teilnehmer gemäß Demo-Protokoll:** Bauleitung, Lüftungsfachplanung sowie Vertretungen von Elektrotechnik und Einkauf. Ein verbindlicher „Entscheider“ wird nur ausgewiesen, wenn das Protokoll diesen ausdrücklich benennt.
 
-| Fachbereich | Dokumentiert / nahegelegt | Als Ableitung markieren |
-|-------------|---------------------------|-------------------------|
-| **Bauleitung** | Neuer Aufstellort TR-C1; längere Kanalführung; Abstimmung mit AG nötig | Terminanpassung Montagefenster; Logistik Weg TR-C1 |
-| **Elektrotechnik** | Zuleitung/Steuerung waren auf TR-B2 und SS-UG-03 ausgelegt | Neue Trasse zu TR-C1; möglicher Mehraufwand Kabel; Prüfung ob SS-UG-03 weiterhin sinnvoll |
-| **Einkauf** | Gerät war für TR-B2 spezifiziert / angefragt | Klärung ob Geräteabmessungen/Anschlüsse für TR-C1 passen; Nachtrag Lieferant; Kosten-/Terminrisiko |
+### 2.5 Auswirkungen, Wissensbedarf und offene Fragen
 
-### 2.6 Situationen, in denen Mitarbeiter das Wissen brauchen
+| Fachbereich | Aus Quellen direkt belegbarer Kontext | Mögliche Auswirkung – **noch zu prüfen** | Sinnvolle Wissensvertiefung |
+|---|---|---|---|
+| **Bauleitung** | Neuer Standort TR-C1 beschlossen; bisheriges Montagefenster KW 19–21 | Montageabfolge und beteiligte Gewerke müssen möglicherweise neu koordiniert werden | Warum eine neue Anlagenposition andere Gewerke und Bauabläufe beeinflussen kann |
+| **Elektrotechnik** | Bisherige Planung zielte auf TR-B2; Bezug zu SS-UG-03 | Leitungswege, Anschlusspositionen und Schaltschrankzuordnung könnten geprüft oder angepasst werden müssen | Wie RLT, Schaltschrank, Stromversorgung und Steuerleitungen zusammenspielen |
+| **Einkauf** | Gerät und Kanäle waren angefragt; Liefertermin KW 18 unverbindlich | Technische Spezifikation, Materialbedarf oder Liefertermin könnten betroffen sein | Warum ein Standortwechsel Beschaffung, Lieferumfang und Freigaben beeinflussen kann |
 
-1. **Elektro-Monteur (Montag):** Soll Kabelwege vorbereiten – weiß nicht, dass der Zielraum gewechselt hat.
-2. **Einkäuferin (Dienstag):** Lieferant fragt nach finaler Aufstellskizze – sie braucht schnell: Was hat sich geändert, was muss nachverhandelt werden?
-3. **Bauleiter-Assistent (fachfremd):** Soll AG kurz briefen – braucht eine verständliche Kurzfassung ohne TGA-Jargon.
-4. **Erfahrene Bauleiterin:** Will Abhängigkeiten und offene Punkte sehen, nicht die Grundlagen der Lüftungstechnik.
+**Explizit offene Informationen:** Neue freigegebene Elektroplanung; bestätigte Gerätespezifikation für TR-C1; tatsächlicher Materialmehrbedarf; zusätzliche Kosten; verbindlicher Liefertermin; Auswirkungen auf den verbindlichen Terminplan.
+
+**Regel:** Es gibt **keine Mindestanzahl an Auswirkungen pro Fachbereich**. Wenn die Quellen für eine Auswirkung nicht ausreichen, wird sie als mögliche Folge oder offene Frage gekennzeichnet – nicht als Tatsache ausgegeben.
+
+### 2.6 Konkrete Nutzungssituationen
+
+1. **Elektro-Monteur:** Möchte verstehen, warum sich der geplante Zielraum geändert hat; darf vor einer Ausführung nicht ungeprüft alte Planunterlagen verwenden.
+2. **Einkäuferin:** Muss eine Lieferantenrückfrage einordnen und erkennen, welche technischen Angaben noch bestätigt werden müssen.
+3. **Bauleiter-Assistent (fachfremd):** Benötigt eine verständliche Erklärung für ein Gespräch mit dem Auftraggeber.
+4. **Erfahrene Bauleiterin:** Will knappe, nachvollziehbare Informationen zu Abhängigkeiten, offenen Freigaben und möglichen Folgen.
 
 ---
 
-## 3. Nutzerrollen und Informationsbedürfnisse
+## 3. Nutzerprofile und Personalisierung
 
-Personalisierung läuft über zwei Achsen:
+Die Personalisierung nutzt im MVP **zwei unabhängige Achsen**:
 
-1. **Fachbereich** → *welche* Informationen relevant sind  
-2. **Kenntnisniveau** → *wie tief / mit welchem Fachjargon* erklärt wird  
+1. **Fachbereich / aktuelle Aufgabe** → bestimmt, **welche** Aspekte für den Nutzer besonders relevant sind.
+2. **Kenntnisniveau zum Thema** → bestimmt, **wie** fachlich detailliert erklärt und visualisiert wird.
+
+Das Kenntnisniveau ist **thematisch**, nicht pauschal an die Berufsbezeichnung gebunden. Ein erfahrener Einkäufer kann beispielsweise wenig über die Funktion einer RLT-Anlage wissen. Im MVP erfolgt die Auswahl **manuell**, ohne automatisch erstelltes Mitarbeiterprofil.
 
 ### 3.1 Bauleitung
 
-| Aspekt | Einsteiger / fachfremd | Erfahrene Fachkraft |
-|--------|------------------------|---------------------|
-| **Aufgabe** | Termine kommunizieren, Protokolle nachhalten, AG informieren | Gewerke steuern, Risiken und Meilensteine freigeben |
-| **Info-Bedarf über andere** | Was Elektro und Einkauf *jetzt* tun müssen (in Alltagssprache) | Konkrete Abhängigkeiten, offene Klärungen, Terminhebel |
-| **Relevante Auswirkungen** | Standortwechsel, warum, wer betroffen, nächste Schritte | Kanalführung, Schnittstellen Elektro/Einkauf, AG-Freigabe, Terminrisiko |
-| **Vorausgesetztes Wissen** | Kaum TGA | Ablaufplanung, Nachtragslogik, Baustellenkoordination |
-| **Erklärungstil** | „Was wurde entschieden? Warum? Was bedeutet das für den Bauablauf?“ + Glossar | Kompakte Decision Card, Impact-Graph, offene Punkte-Liste |
+| Aspekt | Einsteiger / fachfremd | Erfahren |
+|---|---|---|
+| **Ziel** | Entscheidung verständlich wiedergeben | Abhängigkeiten und offene Klärungen steuern |
+| **Relevanter Kontext** | Was wurde beschlossen? Warum? Wen betrifft es? | Planstatus, Schnittstellen zwischen Gewerken, mögliche Terminfolgen |
+| **Wissensbedarf** | Grundlagen zu Lüftungsanlage und Gewerken | Vertiefende Entscheidungsgründe, Plan-/Terminabhängigkeiten |
+| **Darstellung** | Kurze Zusammenfassung, einfache Beziehungsgrafik, Glossar | Kompakte Übersicht, offene Punkte, strukturierte Abhängigkeiten |
 
 ### 3.2 Elektrotechnik
 
-| Aspekt | Einsteiger / fachfremd | Erfahrene Fachkraft |
-|--------|------------------------|---------------------|
-| **Aufgabe** | Unterlagen sortieren, einfache Ausführungsschritte verstehen | Trassen, Anschlüsse, Schaltschrank-Zuordnung planen/ausführen |
-| **Info-Bedarf über andere** | Dass Bauleitung den Raum gewechselt hat; dass Einkauf Gerät ggf. ändert | Technischer Bezug: alter vs. neuer Endpunkt, Bezug SS-UG-03, Schnittstelle RLT |
-| **Relevante Auswirkungen** | „Kabel gehen woanders hin“; Arbeit stoppen bis Klarheit | Neue Trassenführung TR-C1, Prüfung Bestandsplanung, möglicher Mehraufwand |
-| **Vorausgesetztes Wissen** | Grundbegriffe Strom/Kabel | Starkstrom/TGA-Anbindung, Pläne lesen |
-| **Erklärungstil** | Schritt-für-Schritt: Was ändert sich an meinem Auftrag? | Diff alte vs. neue Elektro-Annahmen, offene technische Prüfungen |
+| Aspekt | Einsteiger / fachfremd | Erfahren |
+|---|---|---|
+| **Ziel** | Verstehen, warum der Anlagenstandort die Elektroarbeit betrifft | Planung auf potenzielle Schnittstellenänderungen prüfen |
+| **Relevanter Kontext** | Bisheriger und neuer Anlagenstandort; noch offene Freigaben | TR-B2 → TR-C1, SS-UG-03, Leitungstrassen und Anschlussdaten |
+| **Wissensbedarf** | Zusammenhang zwischen RLT und elektrischer Versorgung | Technische Planungsannahmen, offene Prüf- und Freigabepunkte |
+| **Darstellung** | Vereinfachtes Schema und Begriffserklärungen | Diff der dokumentierten Planannahmen und Prüffragen |
 
 ### 3.3 Einkauf
 
-| Aspekt | Einsteiger / fachfremd | Erfahrene Fachkraft |
-|--------|------------------------|---------------------|
-| **Aufgabe** | Bestellungen nachhalten, Lieferanten-Mails vorbereiten | Nachträge, Spezifikationsänderungen, Kosten-/Terminrisiko steuern |
-| **Info-Bedarf über andere** | Entscheidung und betroffene Bestellung in Klartext | Ob Spezifikation/Abmessungen/Anschlüsse noch passen; was Bau/Elektro noch klären |
-| **Relevante Auswirkungen** | Gerät könnte anders spezifiziert/geliefert werden müssen | Nachverhandlung, Lieferterminrisiko, Dokumentationsbedarf an Lieferant |
-| **Vorausgesetztes Wissen** | Bestellprozess grob | TGA-Beschaffung, Nachtragsfähigkeit |
-| **Erklärungstil** | Checkliste: „Kläre mit Lieferant X diese Punkte“ | Impact + Beschaffungs-Diff + offene kommerzielle Punkte |
+| Aspekt | Einsteiger / fachfremd | Erfahren |
+|---|---|---|
+| **Ziel** | Verstehen, warum eine bauliche Änderung den Einkauf betreffen könnte | Material-, Spezifikations- und Lieferterminrisiken einordnen |
+| **Relevanter Kontext** | Welche Angaben des Fachplaners fehlen noch? | Anfragen, mögliche Bestelländerungen, Freigabestatus, Lieferantenklärung |
+| **Wissensbedarf** | Warum Standort und Anschlüsse die Beschaffung beeinflussen können | Änderungsabgleich von Spezifikation und Bestellstand |
+| **Darstellung** | Kurze Erklärung und offene Fragen | Gegenüberstellung bisherige Angaben / zu bestätigende Angaben |
 
-### 3.4 Relevanz vs. Tiefe (Regel für den MVP)
+### 3.4 Regeln für personalisierte Darstellungen
 
-- **Relevanzfilter (Rolle):** Impact Explorer und Knowledge View zeigen primär Impacts und Tasks des eigenen Fachbereichs; andere Bereiche nur als Kontext/Abhängigkeit.
-- **Tiefenfilter (Niveau):** Dieselben Fakten, aber Einsteiger erhalten Plain-Language, Definitionen und geführte „Was bedeutet das für mich?“-Schritte; Experten erhalten knappe Fakten, IDs (TR-C1, SS-UG-03), Diffs und offene Prüfungen.
+- **Eine gemeinsame Faktenbasis:** Entscheidung, Begründung, Status und Quellen bleiben für alle Rollen gleich.
+- **Rollenbasierte Priorisierung:** Der eigene Fachbereich wird zuerst erklärt; andere Bereiche bleiben für den Zusammenhang zugänglich.
+- **Wissensstandabhängige Tiefe:** Einsteiger erhalten Beispiele, Glossare und einfache Schemata; Erfahrene kompakte Fachbegriffe und technische Details.
+- **Keine unzulässige Vereinfachung:** Wichtige Vorbehalte, Sicherheitsinformationen, Unsicherheiten und Quellen dürfen nicht ausgeblendet werden.
+- **Jederzeit vertiefbar:** Einsteiger können technische Details öffnen; Experten können eine einfache Erklärung wählen.
 
 ---
 
 ## 4. Zentrale User Journey
 
-### Ablauf: Von der Entscheidung zur personalisierten Ansicht
+### 4.1 Daten- und Nutzerfluss
 
+```text
+[Projektdateien vorhanden]
+         ↓
+[Echte KI-Extraktion mindestens eines Meeting-Protokolls]
+         ↓
+[Strukturierte Entscheidung + Fundstellen + offene Fragen]
+         ↓
+[Zuordnung zu bekannten Teamzuständigkeiten]
+         ↓
+[Mögliche Auswirkungen vorschlagen und kenntlich machen]
+         ↓
+[Nutzer wählt Fachbereich + Kenntnisniveau]
+         ↓
+[Personalisierte Übersicht → Entscheidungsdetail]
+         ↓
+[Bei Bedarf: Zusammenhänge / Wissensvertiefung / Quellen]
 ```
-[Quellen einlesen] → [Entscheidung erkennen] → [Auswirkungen zuordnen]
-        → [Inhalte generieren] → [Nutzer wählt Rolle + Niveau]
-        → [Personalisierte Views] → [Vertiefung bei Bedarf]
-```
 
-### Schritt für Schritt
+### 4.2 Nutzerablauf im MVP
 
-| Schritt | Was passiert | Demo-Inhalt |
-|---------|--------------|-------------|
-| **1. Input** | MVP erhält vorbereitete Projektdateien (kein Live-Upload nötig, oder ein Demo-„Sync“-Button mit Fake-Progress) | `projektbeschreibung.md`, `meeting-kw11.md`, `team.md`, `aufgaben.md`, optional `technik-rlt.md` |
-| **2. KI-Erkennung** | System extrahiert strukturierte Objekte | Decision: Standort RLT TR-B2 → TR-C1; Reason: räumliche Einschränkung; Entities: TR-B2, TR-C1, SS-UG-03, RLT |
-| **3. Impact-Zuordnung** | Je Fachbereich Impacts + Confidence/Quelle | Bau: Ort/Kanal/AG; Elektro: Trasse/Schaltschrank; Einkauf: Spezifikation/Lieferant |
-| **4. Content-Generierung** | Views werden befüllt (vorberechnet oder on-the-fly aus strukturierten Demo-Daten) | Decision Card, Impact Graph, Rollen-Erklärungen (2 Niveaus × 3 Rollen) |
-| **5. Einstieg Nutzer** | Mitarbeiter öffnet Projekt „Campus Nord“ | Project Overview mit Status + Highlight „Neue Entscheidung“ |
-| **6. Personalisierung** | Nutzer wählt Fachbereich + Kenntnisniveau (MVP: manuell, kein Login) | z. B. Elektrotechnik / Einsteiger |
-| **7. Exploration** | Nutzer öffnet Impact Explorer | Sieht Kante Entscheidung → Elektro; klickt Impact „Neue Kabeltrasse zu TR-C1“ |
-| **8. Knowledge View** | Personalisierte Erklärung + bei Einsteigern Guided Steps | „Was du jetzt tun solltest“ + optional „Warum Technikräume wichtig sind“ |
-| **9. Vertiefung** | Quellen-Links / Originalauszüge | Sprung zur Meeting-Note-Passage; Kennzeichnung Fakt vs. Ableitung |
+| Schritt | Verhalten | Sichtbarer Nutzen |
+|---|---|---|
+| **1. Datenbasis** | Vorbereitete Projektbeschreibung, zwei Meeting-Protokolle, Aufgaben- und Teamdaten liegen lokal vor. | Verständlicher Ausgangskontext |
+| **2. KI-Extraktion** | Ein realer Modellaufruf liest mindestens das Meeting-Protokoll KW 11 und liefert die strukturierte Entscheidung mit Fundstellen. | Technische Kernfunktion ist nachprüfbar |
+| **3. Wissensverknüpfung** | Das System vergleicht die neue Entscheidung mit ursprünglicher Planung und bekannten Zuständigkeiten. | Änderungen und mögliche Folgen werden sichtbar |
+| **4. Nutzerperspektive** | Nutzer wählt beispielsweise „Einkauf“ und „Einfach“. | Relevanteste Informationen stehen vorne |
+| **5. Überblick** | Die Startseite zeigt die Entscheidung und ihre Bedeutung für diese Rolle. | Sofortige Orientierung |
+| **6. Detailansicht** | Klick öffnet „Was? Warum? Wie hängt es zusammen? Was muss ich wissen? Was bedeutet das für mich?“. | Verständnis statt bloßer Statusbericht |
+| **7. Vertiefung** | Nutzer öffnet ein vereinfachtes Diagramm, eine technische Erklärung oder Quellpassage. | Selbstbestimmte Erklärungstiefe |
+| **8. Perspektivwechsel** | Wechsel zu „Elektrotechnik / Erfahren“ ändert Priorisierung, Sprache und Darstellung, nicht die belegten Fakten. | Personalisierung unmittelbar demonstrierbar |
 
-### Was Rolle und Niveau konkret ändern
+### 4.3 Kerninteraktion: kontextbezogene Wissensvertiefung
 
-- **Gleiche Decision Card**, aber unterschiedliche „Für dich relevant“-Badges und Reihenfolge der Impacts.
-- **Gleicher Graph**, aber eigener Fachbereich hervorgehoben; andere ausgegraut/sekundär.
-- **Knowledge View:** Einsteiger = Narrative + Glossar + Schritte; Experte = Diff-Tabelle + offene Punkte.
+Ein Nutzer liest: „Die Elektroplanung muss möglicherweise überprüft werden.“ Er wählt **„Warum ist das so?“** und erhält:
+
+- Eine kurze, verständliche Erklärung des Zusammenhangs zwischen RLT, elektrischem Anschluss und Anlagenstandort.
+- Ein einfaches Vorher-/Nachher-Schema der **dokumentierten** Planannahmen.
+- Fachbegriffe nach Bedarf: RLT, Trasse, Schaltschrank, Technikraum.
+- Offene technische Fragen, klar getrennt von bereits bestätigten Informationen.
+- Die zugehörigen Quelldokumente bzw. Originalstellen.
+
+**Abgrenzung:** Das ist zunächst ein **interaktiver Deep Dive**, kein vollständiger E-Learning-Kurs und keine freigegebene Montageanleitung.
 
 ---
 
-## 5. Konzept der Benutzeroberfläche
+## 5. Informationsarchitektur und UX-Konzept
 
-Drei Hauptansichten. Navigation: horizontale Tabs oder linke Rail – **Project Overview | Impact Explorer | Knowledge View**. Oben persistent: Projektname, Rollen-Umschalter, Niveau-Umschalter.
+### 5.1 Navigation: zwei Hauptansichten statt drei gleichrangiger Bereiche
 
-### 5.1 Project Overview
+**A. Personalisierte Projektübersicht („Für mich relevant“)**  
+Die Startseite beantwortet auf einen Blick: *Was ist neu? Was betrifft mich? Gibt es Klärungsbedarf?*
 
-| Dimension | Konzept |
-|-----------|---------|
-| **Zweck** | Sofortiger Überblick: Wo steht das Projekt, was ist die wichtigste neue Information? |
-| **Informationen** | Projektkurzprofil; Phase/Woche; Decision Highlight (Titel, Datum, Kurzbegründung); betroffene Fachbereiche als Chips; 3–5 Top-Offene-Punkte |
-| **Visualisierung** | Decision Card (dominant); kleiner Timeline-Strip (Vorher → Entscheidung → Folgeschritte); Status-Pills je Fachbereich (z. B. „Klärung nötig“) – keine Dashboard-Stat-Flut |
-| **Interaktion** | Klick auf Decision → Impact Explorer; Klick auf Fachbereich-Chip filtert; „Quelle anzeigen“ öffnet Meeting-Auszug |
-| **Personalisierung** | Decision bleibt gleich; „Auswirkung auf dich“-Teaser und offene Punkte werden nach Rolle sortiert/gefiltert; Niveau steuert Wortlaut des Teasers |
+**B. Entscheidungsdetail („Änderung verstehen“)**  
+Die Detailansicht vermittelt die Hintergründe, Auswirkungen und Fachzusammenhänge. Ein Impact-Diagramm, eine Entscheidungs-Timeline und fachliche Erklärungen sind **Abschnitte dieser Ansicht**, keine eigenen Hauptseiten.
 
-### 5.2 Impact Explorer
+Für den MVP reicht ein einziger entscheidungsbezogener Einstiegspunkt. Eine mehrstufige Projekt- und Teamnavigation ist nicht nötig.
 
-| Dimension | Konzept |
-|-----------|---------|
-| **Zweck** | Zusammenhänge zwischen Entscheidung und Fachbereichen sichtbar und erkundbar machen |
-| **Informationen** | Knoten: Entscheidung, Räume (TR-B2/TR-C1), Fachbereiche, ggf. Artefakte (Gerät, Schaltschrank); Kanten: wirkt auf / hängt ab von; je Impact: Kurztext, Fakt/Ableitung, Quelle |
-| **Visualisierung** | **Primär:** gerichteter Graph oder Flussdiagramm (Entscheidung in der Mitte → 3 Fachbereich-Zweige). **Sekundär:** Liste/Cards der Impacts mit Filter. Optional einfache Vorher/Nachher-Raumskizze (schematisch, kein CAD) |
-| **Interaktion** | Knoten/Kante anklicken → Detailpanel; Filter nach Fachbereich; Toggle „Nur dokumentierte Fakten“ vs. „inkl. Ableitungen“; Drill-down in Knowledge View |
-| **Personalisierung** | Eigener Zweig hervorgehoben und zuerst expandiert; fremde Zweige komprimiert; Detailtexte niveauabhängig |
+### 5.2 Ebene 1 – Überblick (sofort sichtbar)
 
-### 5.3 Knowledge View
+| Element | Inhalt | Interaktion |
+|---|---|---|
+| **Projektkontext** | „Campus Nord“, Phase, knapper Kontext | Optional mehr Projektkontext |
+| **Decision Card** | „RLT-Standort: TR-B2 → TR-C1“; kurze dokumentierte Begründung | Entscheidung öffnen |
+| **Für dich relevant** | 1–2 rollenrelevante Auswirkungen, ggf. als „möglich“ markiert | Detail öffnen |
+| **Offene Frage / Prüfbedarf** | Wichtigster noch zu klärender Punkt für die gewählte Rolle | Kontext ansehen |
+| **Quellen-/Statushinweis** | z. B. „Im Meeting beschlossen, Fachplanung noch nicht freigegeben“ | Originalstelle anzeigen |
 
-| Dimension | Konzept |
-|-----------|---------|
-| **Zweck** | Personalisierte, verständliche Aufbereitung – das „Was bedeutet das für mich?“ |
-| **Informationen** | Rollenbezogene Erklärung der Entscheidung; relevante Impacts; empfohlene nächste Schritte; Glossar-Einträge (Einsteiger); technische Diffs (Experte); Quellenangaben |
-| **Visualisierung** | Strukturierte Abschnitte statt Fließtext-Wand: Hero-Erklärung (kurz), Impact-Liste mit Icons, **Schritt-für-Schritt** (Einsteiger) oder **Diff-/Checklist-Tabelle** (Experte), Quellen-Accordion |
-| **Interaktion** | Niveau umschalten live; „Mehr Kontext“ klappt Fachwissen auf; Sprung zur Quelle; Markierung Fakt (grün/neutral) vs. Ableitung (gestrichelt/Hinweis) |
-| **Personalisierung** | Inhalt und Reihenfolge strikt rollenbasiert; Tiefe und Sprache niveaubasiert |
+**UX-Regel:** Nicht mit Zahlen-Dashboards, langen Textblöcken oder einem gesamten Wissensgraphen beginnen.
 
-### 5.4 Designprinzipien für den MVP
+### 5.3 Ebene 2 – Verständnis im Entscheidungsdetail
 
-- Visuell und strukturiert vor Textwänden  
-- Eine Entscheidung als roter Faden in allen Views  
-- Immer Quelle + Fakt/Ableitung-Kennzeichnung  
-- Personalisierung über zwei sichtbare Umschalter (Rolle, Niveau) – für Jury sofort erlebbar  
+Die Detailansicht beantwortet die fünf Kernfragen aus Abschnitt 1.1 in dieser Reihenfolge:
+
+1. **Was wurde entschieden?** Kurzer Faktentext, bisheriger/neuer Stand und Entscheidungsstatus.
+2. **Warum?** Begründung aus dem Meeting, mit Quellenverweis.
+3. **Wie hängt das zusammen?** Kompaktes interaktives Diagramm „Entscheidung → Fachbereiche → mögliche Prüfbedarfe“.
+4. **Was muss ich darüber wissen?** Ein kontextbezogener Erklärabschnitt mit optionaler Vertiefung.
+5. **Was bedeutet das für mich?** Rollenrelevante Auswirkungen, dokumentierte Aufgaben und offene Prüffragen.
+
+Die Reihenfolge darf für die Startansicht zugunsten „Für dich relevant“ verkürzt werden; **in der Detailansicht bleiben die Zusammenhänge auffindbar**.
+
+### 5.4 Ebene 3 – fachliche Vertiefung auf Wunsch
+
+Nur bei Bedarf öffnen sich:
+
+- **Einfach erklärt:** Grundlagen und Begriffserklärungen ohne unnötigen Fachjargon.
+- **Fachlich im Detail:** Planannahmen, IDs, technische Abhängigkeiten, offene Prüfungen.
+- **Visuelle Erläuterung:** Vorher-/Nachher-Schema, markierter Bereich oder vereinfachtes Flussdiagramm.
+- **Entscheidungsverlauf:** ursprüngliche Planung → dokumentierte Entscheidung → noch offene Freigaben.
+- **Originalquellen:** Dokumenttitel, Datum/Version und konkrete Textstelle.
+
+Für die erste Version wird **genau ein funktionierender kontextbezogener Deep Dive** umgesetzt; weitere Inhalte dürfen statisch demonstriert werden, müssen aber als solche erkennbar sein.
+
+### 5.5 Darstellungsformen und Auswahlregeln
+
+| Informationstyp | Bevorzugtes UI-Muster | Warum? |
+|---|---|---|
+| Änderung / Entscheidung | Decision Card | Schnell erfassbar |
+| Relevanz für eigene Rolle | Kurze Highlight-Karte | Persönlicher Nutzen auf einen Blick |
+| Abhängigkeiten zwischen Gewerken | Kleines Impact-Diagramm (3 Fachbereiche) + zugängliche Liste | Zusammenhang visuell und textlich verständlich |
+| Gründe / zeitliche Entwicklung | Kurze Timeline | „Wie kam es dazu?“ |
+| Bisherige vs. neue Planannahme | Vorher-/Nachher-Vergleich | Konkrete Veränderung |
+| Fachliches Hintergrundwissen | Aufklappbarer Erklärabschnitt oder seitliches Panel | Vertiefung ohne Kontextverlust |
+| Offene Punkte / Aufgaben | Liste mit klarem Status | Handlungs- und Klärungsbedarf |
+| Quellen | Direkt verlinkte Fundstellen | Nachvollziehbarkeit |
+
+**UI-Prinzip:** Das System wählt für den MVP aus **fest definierten Komponenten** anhand eines Inhaltstyps. Das LLM generiert **nicht beliebigen UI-Code oder freie Layouts**.
+
+### 5.6 Interaktionen und visuelle Priorisierung
+
+- Rollen- und Niveau-Umschalter sind sichtbar, aber nicht die wichtigste Bildschirmfläche.
+- „Mehr erfahren“, „Warum?“, „Technische Details“ und „Quelle ansehen“ öffnen kurze Inline-Bereiche oder ein Detailpanel.
+- Im Impact-Diagramm wird die eigene Rolle hervorgehoben; alle anderen bleiben sichtbar, damit der Teamzusammenhang nicht verloren geht.
+- Jede visualisierte Beziehung erhält einen verständlichen Text und gegebenenfalls ihren Belegstatus.
+- **Bestätigt / mögliche Auswirkung / offen / überholt** werden durch **Textlabels und ggf. Icons**, nicht ausschließlich durch Farben, unterschieden.
+- Keine sicherheitskritischen Schritte als einfache „Jetzt ausführen“-Checkliste ausgeben. Neutrale Formulierung: „Mit Fachplanung prüfen“ oder „Freigabe klären“.
+
+### 5.7 Kompakter Screen-Aufbau (konzeptionell)
+
+```text
+PROJEKTÜBERSICHT
+Campus Nord                          [Fachbereich] [Kenntnisniveau]
+
+WICHTIGE ÄNDERUNG
+Lüftungsanlage: TR-B2 → TR-C1
+Warum? Raum TR-B2 ist zu klein.
+Status: Im Meeting beschlossen · Ausführungsfreigabe offen
+
+FÜR DICH RELEVANT (z. B. Einkauf)
+Mögliche Folge: Material-/Bestellangaben überprüfen
+Offene Frage: Ist die aktualisierte Spezifikation freigegeben?
+[Änderung verstehen]
+
+                           ↓
+
+ENTSCHEIDUNGSDETAIL
+Was? · Warum? · Wie hängt es zusammen?
+[Entscheidung] → [Elektro] [Einkauf] [Bauleitung]
+
+Was muss ich wissen? [Warum kann sich der Materialbedarf ändern? ▾]
+Was bedeutet das für mich? [Prüfbedarf] [Offene Fragen]
+[Quelle anzeigen] [Technische Details]
+```
 
 ---
 
 ## 6. Priorisierte funktionale Anforderungen
 
-### Must-have (Hackathon-Kern)
+### 6.1 Must-have: Hackathon-Kern
 
 | ID | Anforderung |
-|----|-------------|
-| M1 | Ein Demo-Projekt „Campus Nord“ mit der Entscheidung RLT TR-B2 → TR-C1 |
-| M2 | Strukturierte Darstellung der Entscheidung (Titel, Begründung, Datum, Entscheider) inkl. Quellenverweis |
-| M3 | Drei Fachbereich-Profile: Bauleitung, Elektrotechnik, Einkauf |
-| M4 | Zwei Kenntnisniveaus: Einsteiger, Erfahrene Fachkraft – umschaltbar |
-| M5 | Project Overview mit Decision Highlight und rollenbezogenem Teaser |
-| M6 | Impact Explorer mit visueller Abhängigkeitsdarstellung Entscheidung → Fachbereiche |
-| M7 | Mindestens 2 Impacts pro Fachbereich, jeweils mit Kennzeichnung Fakt vs. Ableitung |
-| M8 | Knowledge View mit rollen- und niveauabhängigen Erklärungen und nächsten Schritten |
-| M9 | Anzeige von Originalauszügen / Quellenlinks zu Meeting Notes / Projektbeschreibung |
-| M10 | Klare Abgrenzung in der UI: kein Chat-Eingabefeld als Hauptinteraktion |
+|---|---|
+| **M1** | Ein vollständiges, fiktives Demo-Projekt „Campus Nord“ mit ursprünglicher Planung und Meeting-Entscheidung TR-B2 → TR-C1 |
+| **M2** | **Echte KI-Extraktion** aus mindestens einem vorbereiteten Meeting-Protokoll: Entscheidung, Begründung, beteiligte Bereiche und Quellfundstellen als strukturierte Daten |
+| **M3** | Strukturierte Wissensbasis, die dokumentierte Fakten, mögliche Auswirkungen und offene Informationen getrennt speichert |
+| **M4** | Drei wählbare Rollen (Bauleitung, Elektrotechnik, Einkauf) und zwei unabhängig wählbare Kenntnisniveaus (Einfach, Fachlich) |
+| **M5** | Personalisierte Projektübersicht mit Decision Card, „Für dich relevant“ und offenem Prüfbedarf |
+| **M6** | Interaktive Entscheidungsdetailansicht mit den fünf Kernfragen aus Abschnitt 1.1 |
+| **M7** | Kompakte visuelle Darstellung der Beziehungen zwischen Entscheidung und betroffenen Fachbereichen, alternativ auch als verständliche Liste |
+| **M8** | KI-generierte rollen- und niveauabhängige Erklärungen mit **identischen Kernfakten** und unterschiedlichen Schwerpunkten |
+| **M9** | **Mindestens eine funktionierende, kontextbezogene Wissensvertiefung** („Warum?“ / „Mehr verstehen“) |
+| **M10** | Nachprüfbare Quellenangaben, Kennzeichnung von Vermutungen und offenen Punkten sowie sichtbarer Status der Plan-/Ausführungsfreigabe |
 
-### Should-have (wenn Zeit)
+**Nicht vorgeben:** Eine Mindestanzahl an Auswirkungen pro Rolle. Ist keine Aussage belegbar oder sinnvoll ableitbar, muss das System dies anzeigen können.
+
+### 6.2 Should-have: sinnvolle Erweiterungen
 
 | ID | Anforderung |
-|----|-------------|
-| S1 | Toggle „Nur Fakten“ im Impact Explorer |
-| S2 | Vorher/Nachher-Schema der Technikräume (einfache Grafik) |
-| S3 | Glossar-Tooltips für Einsteiger (RLT, TR, Schaltschrank, Nachtrag) |
-| S4 | „Demo einlesen“-Animation, die Analyse simuliert (Storytelling für die Jury) |
-| S5 | Diff-Ansicht alt/neu für Elektro-Annahmen und Beschaffungsstatus |
-| S6 | Export/Share einer rollenspezifischen Kurzzusammenfassung (PDF oder Copy) |
+|---|---|
+| **S1** | Vorher-/Nachher-Skizze TR-B2 → TR-C1, schematisch und klar als nicht maßstabsgetreu gekennzeichnet |
+| **S2** | Kleine Timeline „bisherige Planung → Entscheidung → offene Freigabe“ |
+| **S3** | Kontextbezogenes Glossar für RLT, TR, Schaltschrank, Kanalführung und Nachtrag |
+| **S4** | Umschalter „Nur belegte Informationen / auch mögliche Auswirkungen“ |
+| **S5** | Visuelle Diff-Darstellung der dokumentierten Elektro- oder Beschaffungsannahmen |
+| **S6** | Ein zweites Meeting oder eine neue Quelle erneut analysieren, um eine aktualisierte Wissensansicht zu zeigen |
+| **S7** | Eine rollenspezifische Kurzübersicht kopieren oder exportieren |
 
-### Out of scope
+**Demohinweis:** Eine echte Modellverarbeitung darf mit einem sichtbaren Analysezustand dargestellt werden. Eine rein simulierte Animation darf **nicht als real durchgeführte KI-Analyse** präsentiert werden.
 
-| ID | Bewusst ausgeschlossen |
-|----|------------------------|
-| O1 | Freier KI-Chat / multi-turn Assistent |
-| O2 | Echtes Login, Rechteverwaltung, Multi-Tenancy |
-| O3 | Live-Anbindung SharePoint/Procore/ERP |
-| O4 | Mehrere parallele Projekte / Portfolio |
-| O5 | Bearbeitung von Aufgaben in Fremdsystemen |
-| O6 | CAD/BIM-Viewer, echte Grundriss-Analyse |
-| O7 | E-Mail-/Teams-Benachrichtigungen |
-| O8 | Vollautomatische Nachtragskalkulation oder Terminplan-Neuberechnung |
-| O9 | Beliebige neue Dokumente zur Laufzeit zuverlässig verarbeiten (Demo darf vorgenerierte Inhalte nutzen) |
+### 6.3 Out of scope
+
+| ID | Bewusst nicht Bestandteil des MVPs |
+|---|---|
+| **O1** | Offener Multi-Turn-Chat als Hauptinteraktion |
+| **O2** | Login, echte Rechteverwaltung, Multi-Tenancy und unternehmensweite Profile |
+| **O3** | Live-Integration in Procore, SAP, SharePoint, Teams oder ERP |
+| **O4** | Mehrere gleichzeitige Bauprojekte oder ein Portfolio-Dashboard |
+| **O5** | Bearbeiten von Aufgaben, Bestellungen oder Planfreigaben in Fremdsystemen |
+| **O6** | Vollständiger CAD-/BIM-Viewer, automatische IFC-Auswertung, umfangreiche Grundrissanalyse |
+| **O7** | E-Mail-Benachrichtigungen und proaktive Push-Updates |
+| **O8** | Verbindliche Berechnung von Kosten-, Material- oder Terminfolgen |
+| **O9** | Beliebige neue Dokumente und Formate robust und fehlerfrei verarbeiten |
+| **O10** | Vollständige Lernplattform, Skill-Assessment und freigegebene technische Arbeitsanweisungen |
 
 ---
 
-## 7. Benötigte Informationsquellen
+## 7. Informationsquellen, Wissensmodell und Verlässlichkeit
 
-### 7.1 Quellenkatalog für Beispieldaten (nächster Schritt)
+### 7.1 Benötigte Demo-Dateien
 
-| Quelle | Inhalt (Soll) | Daraus gewinnbar |
-|--------|---------------|------------------|
-| **Projektbeschreibung** | Ziele, Gebäude, ursprünglicher RLT-Standort TR-B2, grobe Termine, Leistungsdaten | Projektkontext, Baseline-Planung |
-| **Meeting Notes KW 11** | Entscheidung TR-C1, Begründung Raumknappheit TR-B2, Anwesende, offene Punkte | Decision + Reason + dokumentierte Follow-ups |
-| **Team / Zuständigkeiten** | Personen oder Rollen je Fachbereich | Rollenmapping für Personalisierung |
-| **Aufgabenliste** | Offene Tasks vor/nach Entscheidung (auch unaktualisierte Tasks als „Konflikt“-Demo) | Relevanz „veraltete Aufgabe vs. neue Lage“ |
-| **Kurz-Doku RLT / Elektro** | SS-UG-03, geplante Anbindung TR-B2, Gerätebezug Einkauf | Technische Anker für Elektro/Einkauf-Impacts |
-| **Optional: Schema-Grundriss** | Stark vereinfachte Lage TR-B2 vs. TR-C1 | Visualisierung Vorher/Nachher (S2) |
+| Quelle | Enthält | Wofür verwendet? |
+|---|---|---|
+| `projektbeschreibung.md` | Projektkontext, ursprünglicher RLT-Standort, Projektziele, Zeitangaben | Basiswissen und ursprünglicher Stand |
+| `meeting-kw10-planung.md` | Früherer Planungsstand und Vereinbarungen | Vorher-Zustand und mögliche Überholung |
+| `meeting-kw11-lueftung.md` | Beschlossene Standortverlegung, Gründe, Beteiligte, offene Fragen | Echte KI-Entscheidungsextraktion |
+| `team-zustaendigkeiten.md` | Aufgaben der drei Fachbereiche | Relevanz- und Impact-Zuordnung |
+| `aufgaben.md` | Bestehende Aufgaben, Zuständige, Status | Abgleich mit Entscheidung und offenen Prüfungen |
+| `technik-rlt-elektro.md` | Ursprünglich vorgesehener Anschluss, SS-UG-03 und Fachbegriffe | Sachliche Grundlage der Wissensvertiefung |
+| Optional: schematische Skizze | TR-B2 und TR-C1, **nicht maßstabsgetreu** | Vorher-/Nachher-Visualisierung |
 
-### 7.2 Fakten vs. Ableitungen vs. Lücken
+### 7.2 Minimales strukturiertes Wissensmodell
 
-| Typ | Beispiele im Szenario | Umgang im MVP |
-|-----|----------------------|---------------|
-| **Dokumentierte Fakten** | Entscheidung TR-C1; Begründung Enge TR-B2; ursprüngliche Planung TR-B2; Anwesenheit der Fachbereiche; Bezug SS-UG-03 in Technikdoku | Als Fakt anzeigen, Quelle zitieren |
-| **KI-Ableitungen (plausibel, unsicher)** | Elektro braucht neue Trasse; Einkauf muss Spezifikation/Liefertermin prüfen; Bauleitung muss AG informieren und Montagefenster prüfen | Als „Abgeleitet“ labeln; Begründung der Ableitung kurz zeigen; niedrige/mittlere Confidence ok |
-| **Fehlende Informationen** | Exakte Mehrkosten; verbindlicher neuer Liefertermin; freigegebene Elektro-Neuplanung; ob SS-UG-03 technisch ausreicht | Als „Offen / unbekannt“ führen – **nicht** als eingetretene Auswirkung verkaufen |
+| Objekt | Zentrale Felder |
+|---|---|
+| **Project** | ID, Name, Projektkontext |
+| **Source** | ID, Dateiname, Dokumentdatum, Version, konkrete Fundstelle |
+| **Decision** | ID, alter/neuer Stand, Entscheidungstext, Begründung, Meeting-Datum, **Beschlussstatus**, **Freigabestatus**, Quellen |
+| **Team** | ID, Fachbereich, Zuständigkeitsbeschreibung |
+| **Impact** | ID, betroffene Rolle, mögliche Folge, **Status**, Begründung, unterstützende Quellen oder Verweis auf notwendige Prüfung |
+| **Task / Open Question** | ID, Titel, verantwortlicher Bereich, dokumentiert oder vorgeschlagen, Status |
+| **Knowledge Topic** | Begriff/Frage, Erklärung, verwendete Quellen, passende Darstellungsform |
+| **User Context** | gewählte Rolle, gewähltes thematisches Kenntnisniveau |
 
-**Regel für Demo-Texte und spätere KI-Prompts:**  
-Formuliere Ableitungen als Hypothesen („Wahrscheinlich relevant für …“, „Zu prüfen:“), nie als beschlossene Projektwahrheit.
+**Wichtige Unterscheidung:** Ein *belegter Fakt* kann sich auf einen dokumentierten Beschluss beziehen, ohne dass die **Ausführung** bereits freigegeben ist. Deshalb dürfen Aussage-Belegstatus und Freigabestatus nicht in ein einziges Feld gemischt werden.
+
+### 7.3 Vier Informationsstatus
+
+| Status | Bedeutung | Anzeige |
+|---|---|---|
+| **Belegt** | Aussage steht nachvollziehbar in einer Quelle | „Dokumentiert“, mit Fundstelle |
+| **Mögliche Auswirkung** | Aus Quellen und Teamzuständigkeiten abgeleitet, aber ungeprüft | „Möglich – prüfen“, mit Begründung |
+| **Offen** | Informationen oder Freigaben fehlen | „Noch ungeklärt“, ggf. zuständiger Fachbereich |
+| **Überholt** | Frühere Planung wurde nachweislich durch eine neuere Entscheidung ersetzt | „Vorheriger Stand“, mit Verweis auf neue Quelle |
+
+**Zusätzliche Fachstatus:** „Im Meeting beschlossen“, „Fachplanung in Prüfung“, „Zur Ausführung freigegeben“ dürfen nur entsprechend den tatsächlichen Quellen gesetzt werden.
+
+### 7.4 Regeln für KI-Ausgaben
+
+1. **Extraktion und Erklärung trennen:** Zuerst Quelleninhalte strukturiert erfassen, danach rollenabhängig erklären.
+2. **Quellenbezug:** Keine erfundenen Protokollstellen, Verantwortlichen, Kosten, Termine oder Freigaben.
+3. **Kein Zwang zu Auswirkungen:** Wenn die Daten eine Folge nicht stützen, lieber „noch nicht bestimmbar“ anzeigen.
+4. **Ableitungen begründen:** Jede mögliche Folge verweist auf die Ausgangsfakten und den Zusammenhang, aus dem sie abgeleitet wurde.
+5. **Aktualität beachten:** Frühere Planannahmen nicht als aktuellen Stand darstellen, wenn eine neuere Quelle sie ersetzt.
+6. **Gleiche Fakten bei jeder Personalisierung:** Sprache, Detailtiefe und Priorisierung dürfen variieren; Wahrheit, Status und sicherheitsrelevante Vorbehalte nicht.
+7. **Technische Sicherheit:** Kein ungeprüftes „so muss die Anlage angeschlossen werden“. Offene Planung und Freigaben klar kommunizieren.
+8. **Unsicherheit nicht durch scheinpräzise Scores verschleiern:** Im MVP sind verständliche Statuslabels hilfreicher als unkalibrierte Prozentwerte.
+
+### 7.5 KI-Verarbeitung im MVP: echte Funktion und zuverlässige Demo
+
+Der MVP muss **mindestens einen echten KI-Schritt** enthalten:
+
+1. Das vorbereitete Meeting-Protokoll KW 11 wird an ein Modell übergeben.
+2. Das Modell extrahiert die Entscheidung, ihre Begründung, referenzierte Räume/Fachbereiche und Textfundstellen in ein festes Datenschema.
+3. Der Output wird gegen die vorhandenen Dateien und ein Schema überprüft.
+4. Die extrahierte Entscheidung wird mit vorbereiteten Zuständigkeiten und Planannahmen verknüpft; mögliche Auswirkungen werden deutlich markiert.
+5. Mindestens eine rollen- und niveauabhängige Erklärung wird aus diesen strukturierten Daten durch KI generiert.
+
+Für eine stabile Jury-Demo dürfen **zuvor tatsächlich erzeugte und geprüfte Ergebnisse** als Fallback geladen werden. Der UI-Zustand muss dann ehrlich als „vorbereitetes Analyseergebnis“ erkennbar sein. **Keine vorgetäuschte Echtzeitverarbeitung.**
 
 ---
 
 ## 8. Akzeptanz- und Erfolgskriterien
 
-### 8.1 Funktional / inhaltlich
+### 8.1 Funktional und fachlich
 
-| # | Kriterium | Prüfung |
-|---|-----------|---------|
-| A1 | Entscheidung wird korrekt erkannt bzw. in Daten als solche geführt | Titel, Von-Ort, Nach-Ort, Begründung stimmen mit Meeting Notes überein |
-| A2 | Impacts sind den richtigen Fachbereichen zugeordnet | Bau, Elektro, Einkauf haben jeweils ≥2 passende Impacts; keine groben Fehlzuordnungen (z. B. Lieferanten-Nachtrag nicht unter Elektro als Fakt) |
-| A3 | Fakt vs. Ableitung vs. Offen sind unterscheidbar | Spot-Check: mindestens 1 Fakt, 1 Ableitung, 1 offener Punkt sichtbar und korrekt gelabelt |
-| A4 | Personalisierung nach Rolle | Bei Wechsel Bau → Elektro ändern sich Teaser, hervorgehobene Impacts und Knowledge-Inhalt ersichtlich |
-| A5 | Personalisierung nach Niveau | Bei Wechsel Einsteiger → Experte ändern sich Sprache/Struktur (Schritte/Glossar vs. Diff/Kompakt), Kernfakten bleiben gleich |
-| A6 | Quellen nachvollziehbar | Jede Decision und jeder Fakt-Impact hat einen nachprüfbaren Quellenbezug |
+| ID | Kriterium | Wie wird es geprüft? |
+|---|---|---|
+| **A1** | Mindestens ein echter KI-Extraktionsdurchlauf funktioniert | Meeting KW 11 liefert strukturierte Entscheidung mit richtigem Vorher-/Nachher-Ort und Grund |
+| **A2** | Quellinformationen sind nachvollziehbar | Jede dokumentierte Kernaussage verweist auf eine existierende Datei und konkrete Fundstelle |
+| **A3** | Fakt, mögliche Folge, offen und überholt werden getrennt | Beispiel jeder vorkommenden Kategorie korrekt erkennbar; keine behauptete Freigabe ohne Beleg |
+| **A4** | Rollenwechsel verändert den Schwerpunkt | Einkauf und Elektrotechnik sehen jeweils andere relevante Fragen und Zusammenhänge |
+| **A5** | Niveauwechsel verändert die Vermittlung | Einfach und Fachlich unterscheiden sich sinnvoll; Kernaussagen und Unsicherheiten bleiben gleich |
+| **A6** | Mindestens ein kontextbezogener Deep Dive funktioniert | Nutzer kann „Warum ist das relevant?“ öffnen und eine verständliche fachliche Erklärung sehen |
+| **A7** | Visuelle Beziehungen stimmen mit den Daten überein | Im Diagramm erscheinen nur modellierte, korrekt gekennzeichnete Beziehungen |
+| **A8** | Unbelegte Aussagen werden nicht als Fakten ausgegeben | Testfälle zu Kosten, Fristen und Freigaben bleiben „offen“ bzw. „möglich“ |
+| **A9** | Die Demo kann bei einem Fehler des Live-Modells fortgesetzt werden | Geprüfter Fallback ist vorhanden und als vorbereitet gekennzeichnet |
 
-### 8.2 Nutzbarkeit (Demo-/Jury-Test)
+### 8.2 Verständlichkeit und Nutzen
 
-| # | Kriterium | Prüfung |
-|---|-----------|---------|
-| B1 | Einstieg unter 30 Sekunden | Unbeteiligte Person versteht nach Overview: „Es gibt eine Entscheidung zur Lüftung und sie betrifft mehrere Gewerke“ |
-| B2 | Rollenwert unter 2 Minuten | Testnutzer in Rolle Elektro/Einkauf kann benennen: „Was bedeutet das für mich?“ und „Was ist noch unklar?“ |
-| B3 | Schneller als Rohdoku | Gegenüber dem Lesen der Meeting Notes + Projektbeschreibung findet Testnutzer die rollenrelevanten Punkte spürbar schneller (qualitativer A/B mit 2–3 Personen reicht) |
-| B4 | Kein Chatbot-Eindruck | Jury sieht primär Views/Graph/strukturierte Erklärungen; Chat ist nicht der Einstieg |
+| ID | Kriterium | Prüfung |
+|---|---|---|
+| **B1** | Grundverständnis nach kurzer Orientierung | Testperson kann erklären, was sich von TR-B2 nach TR-C1 geändert hat und warum |
+| **B2** | Rollenrelevanz wird erkannt | Testperson kann sagen, welche Punkte den ausgewählten Fachbereich betreffen könnten |
+| **B3** | Unsicherheiten werden korrekt verstanden | Testperson kann mindestens eine **offene** Frage nennen und sie von einem belegten Fakt unterscheiden |
+| **B4** | Wissensvertiefung hilft tatsächlich | Testperson kann nach dem Deep Dive den fachlichen Zusammenhang in eigenen Worten erklären |
+| **B5** | Vergleich zur Rohdokumentation | Kleine Vergleichsaufgabe: gleiche Fragen einmal anhand Originalquellen, einmal anhand der Wissensansicht; Bearbeitungszeit und Richtigkeit erfassen |
+| **B6** | Interface ist ohne Chat verständlich | Nutzer findet Entscheidung, Auswirkungen und Vertiefung ohne eine Frage formulieren zu müssen |
 
-### 8.3 Hackathon-Definition of Done
+**Testumfang:** Erste explorative Tests mit 2–3 fachfremden Personen sind für einen Hackathon sinnvoll. Solche Tests liefern Beobachtungen und Verbesserungshinweise, **keine statistisch belastbaren Aussagen über Zeitersparnis**.
 
-- Ein lauffähiger UI-Prototyp mit den drei Views  
-- Beispieldaten für Campus Nord geladen  
-- Rollen- und Niveau-Umschalter funktionsfähig  
-- Mindestens ein durchgängiger Happy Path für alle drei Fachbereiche  
+### 8.3 Definition of Done
+
+Der MVP gilt als erfolgreich vorführbar, wenn:
+
+- **Ein** Projekt und **eine** zentrale Entscheidung vollständig abgebildet sind.
+- Eine **echte KI-Extraktion** demonstriert werden kann.
+- Zwei Hauptansichten – Übersicht und Entscheidungsdetail – funktionieren.
+- Alle drei Fachbereiche mit beiden Kenntnisniveaus sinnvolle, unterscheidbare Erklärungen erhalten.
+- Ein interaktives Abhängigkeitsdiagramm oder eine gleichwertige Strukturansicht vorhanden ist.
+- **Eine Wissensvertiefung** mit kontextbezogener Erklärung und Quellenbezug funktioniert.
+- Belegstatus, offene Informationen und noch nicht erteilte Freigaben eindeutig erkennbar sind.
+- Ein durchgängiger Demo-Pfad auch mit geprüften vorbereiteten Daten möglich ist.
 
 ---
 
-## 9. Abgrenzung des MVP-Umfangs
+## 9. MVP-Abgrenzung und Umsetzungsreihenfolge
+
+### 9.1 Scope
 
 | In Scope | Out of Scope |
-|----------|--------------|
-| Ein Projekt, eine Leitentscheidung | Multi-Projekt, Decision-Inbox für Monate |
-| 3 Rollen × 2 Niveaus | Feingranulare Persona-Modelle, Skill-Assessments |
-| Vorgenerierte oder semi-automatisch erzeugte Inhalte aus Demo-Quellen | Produktionsreife Document-AI-Pipeline |
-| Visuelle Impact- und Knowledge-Views | Freier Assistenten-Chat |
-| Kennzeichnung Fakt / Ableitung / Offen | Juristisch belastbare Compliance-Berichte |
-| Schema-Visualisierung Technikräume (optional) | BIM/CAD |
+|---|---|
+| Fiktives Projekt mit einer entscheidenden Änderung | Multi-Projekt- und Unternehmensplattform |
+| Zwei Hauptansichten und eine vertiefbare Detailansicht | Komplexe Navigation und zahlreiche Dashboards |
+| Drei Fachbereiche × zwei Kenntnisniveaus | Automatisches Skill-Profiling |
+| Echte KI-Extraktion aus einem Meeting | Beliebige Dokumente fehlerfrei analysieren |
+| Eine dynamische, KI-generierte Wissensvertiefung | Vollständige E-Learning-Lösung |
+| Einfacher Impact-Zusammenhang mit gekennzeichneten Hypothesen | Belastbare Kosten-/Termin-/Sicherheitsberechnung |
+| Konkrete Quellen und offener Freigabestatus | Komplette BIM-/ERP-Integration |
 
-**Erfolg des Wochenend-MVP:**  
-Eine Jury-Person in der Rolle „Einkauf / Einsteiger“ öffnet Campus Nord, versteht in unter zwei Minuten die Lüftungs-Entscheidung und ihre Beschaffungsrelevanz – inklusive dem, was noch *nicht* bekannt ist.
+### 9.2 Empfohlene Reihenfolge der Implementierung
+
+1. **Szenario und Prüfantworten fixieren:** Alle Demo-Quellen, belegten Entscheidungen, offenen Fragen und erwarteten Antworten festlegen.
+2. **UI mit Mock-Daten bauen:** Übersicht, Entscheidungsdetail, Rollen- und Niveau-Umschalter, ein Deep-Dive-Abschnitt.
+3. **Strukturiertes Wissensmodell anlegen:** Entscheidungen, Quellen, Teams, mögliche Auswirkungen und offene Punkte.
+4. **Echte KI-Extraktion implementieren:** KW-11-Protokoll → strukturierter, quellbezogener Output.
+5. **Personalisierte Erklärung integrieren:** Erklärungstext und eine Wissensvertiefung auf Grundlage des Wissensmodells generieren.
+6. **Validieren und Demo absichern:** Testfragen prüfen, Unsicherheiten korrekt anzeigen, geprüften Fallback einrichten.
+
+**Prioritätsregel:** Wenn Zeit fehlt, lieber einen hochwertigen, belegten Wissens-Deep-Dive und echten KI-Extraktionsfluss fertigstellen als zusätzliche Diagramme, Tutorials oder Integrationen beginnen.
+
+### 9.3 Produktthese für den Hackathon
+
+> Kann ImpactView eine dokumentierte Entscheidung eines Fachbereichs so aufbereiten, dass andere Mitarbeiter **schneller und korrekter verstehen**, warum sie getroffen wurde, wie sie mit ihrer Arbeit zusammenhängt und welches zusätzliche Fachwissen sie dafür benötigen?
+
+Der Kern ist **Wissensverständnis**. Ein Impact-Diagramm ist ein Mittel dazu, nicht der alleinige Produktzweck.
 
 ---
 
-## Anhang A – Inhaltsgerüst für Beispieldaten (nächster Schritt)
-
-Vorschlag Dateistruktur:
+## Anhang A – Dateistruktur für Beispieldaten
 
 ```text
 data/campus-nord/
   projektbeschreibung.md
+  meeting-kw10-planung.md
   meeting-kw11-lueftung.md
   team-zustaendigkeiten.md
   aufgaben.md
   technik-rlt-elektro.md
+  optional-raumskizze.png
   derived/
-    decision.json
+    decisions.json
     impacts.json
-    knowledge-by-role.json
+    knowledge-topics.json
+    explanations-by-role.json
+  tests/
+    expected-decisions.json
+    expected-statuses.json
+    comprehension-questions.md
 ```
 
-`derived/` kann zunächst handkuratiert werden (zuverlässige Demo); später durch KI-Generierung ersetzt oder ergänzt.
+`derived/` enthält Ergebnisse, die **aus Quellen abgeleitet, geprüft und gegebenenfalls für die Demo vorbereitet** wurden. Die Dateien in `tests/` dienen dazu, die echte KI-Ausgabe auf korrekte Kerninformationen und den Umgang mit Unsicherheiten zu überprüfen.
 
-## Anhang B – Kurz-Storyboard für die Demo (3 Minuten)
+## Anhang B – Demo-Storyboard (etwa 3 Minuten)
 
-1. **Overview:** „Neue Entscheidung“ – RLT von TR-B2 nach TR-C1, Begründung Raum.  
-2. **Rolle Einkauf / Einsteiger:** Knowledge View – Checkliste Lieferant.  
-3. **Impact Explorer:** Graph – Zweige Bau / Elektro / Einkauf; Toggle Ableitungen.  
-4. **Wechsel Elektro / Experte:** andere Hervorhebung, Diff SS-UG-03 / TR-C1.  
-5. **Quelle öffnen:** Meeting-Passage – Vertrauen durch Nachvollziehbarkeit.  
+1. **Ausgangslage (ca. 25 s):** Kurzer Blick auf Projektbeschreibung und Meeting KW 11. „Wichtige Entscheidungen liegen verteilt in Dokumenten.“
+2. **KI-Verarbeitung (ca. 35 s):** Echte Extraktion der Standortentscheidung zeigen; falls nötig transparent auf ein zuvor geprüftes Analyseergebnis zurückgreifen.
+3. **Einkauf / Einfach (ca. 45 s):** Projektübersicht öffnen: Was wurde geändert? Warum betrifft mich das? Welche Punkte sind noch ungeklärt?
+4. **Vertiefung (ca. 35 s):** „Warum kann die neue Position den Materialbedarf beeinflussen?“ öffnen und verständliche Erklärung mit Quellbezug zeigen.
+5. **Perspektivwechsel (ca. 25 s):** „Elektrotechnik / Fachlich“ wählen; andere Priorisierung, technischer Zusammenhang, gleiche Faktenbasis.
+6. **Abhängigkeiten und Vertrauenswürdigkeit (ca. 15 s):** Kleines Impact-Diagramm und Quellen/Status zeigen. Abschluss mit der Produktthese.
+
+## Anhang C – Änderungen gegenüber Version 1.0
+
+- **Fokus geschärft:** Wissensverständnis statt primär Projektmanagement und Impact-Tracking.
+- **UX vereinfacht:** Zwei Hauptansichten; Impact-Diagramm und Knowledge Deep Dive als integrierte Elemente.
+- **Personalisierung erweitert:** Nicht nur Wortwahl, sondern Relevanz, Fachkontext, Vertiefung und geeignete Darstellung.
+- **Echte KI-Funktion als Pflicht:** Mindestens eine Extraktion und eine generierte personalisierte Erklärung.
+- **Vertrauensmodell präzisiert:** Belegt, möglich, offen und überholt; separate Unterscheidung von Meeting-Beschluss und Ausführungsfreigabe.
+- **Problematische Mengenanforderung entfernt:** Keine künstlichen „mindestens zwei Auswirkungen pro Fachbereich“.
+- **Tests verbessert:** Verständnis, Richtigkeit, Quellenbezug, Unsicherheitsverständnis und Vergleich mit Rohdokumentation.
+- **Hackathon-Grenzen erhalten:** Keine BIM-, ERP- oder vollumfängliche Lernplattform.
 
 ---
 
-*Dokumentstatus: Grundlage für Beispieldaten und UI-Umsetzung. Keine Architektur-/Framework-Festlegung.*
+*Dokumentstatus: Überarbeitete Grundlage für die Erstellung von Beispieldaten und den MVP-Bau. Alle Projektnamen, Rollen und technischen Angaben sind fiktive Demo-Daten, sofern nicht ausdrücklich anders gekennzeichnet.*
