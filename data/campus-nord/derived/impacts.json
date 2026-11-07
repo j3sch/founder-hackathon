@@ -1,0 +1,191 @@
+{
+  "decisionId": "dec-rlt-standort-tr-c1",
+  "impacts": [
+    {
+      "id": "imp-bau-folgepruefung-montage",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "bauleitung",
+      "title": "Montageabfolge und Gewerkekoordination prüfen",
+      "description": "Für den neuen Standort TR-C1 sollen Montageabfolge und beteiligte Gewerke geprüft bzw. neu koordiniert werden. Das bisherige Montagefenster KW 19–21 ist auf Plausibilität zu prüfen.",
+      "reliability": "belegt",
+      "rationale": "Im Meeting KW 11 als vereinbarte Folgeprüfung der Bauleitung dokumentiert – noch ohne abgeschlossenes Ergebnis.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Folgeprüfungen (Bauleitung)",
+          "excerpt": "Montageabfolge und Gewerkekoordination für neuen Standort prüfen; bisheriges Montagefenster KW 19–21 auf Plausibilität prüfen"
+        }
+      ],
+      "relatedTaskIds": ["A-10-04", "A-11-01"],
+      "suggestedVisualization": "checklist"
+    },
+    {
+      "id": "imp-bau-moegliche-terminfolge",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "bauleitung",
+      "title": "Mögliche Anpassung des Bauablaufs",
+      "description": "Durch längere Kanalführung und offene Planaktualisierungen könnte der Bauablauf betroffen sein. Ob das Montagefenster oder der verbindliche Terminplan tatsächlich verschoben werden muss, ist nicht belegt.",
+      "reliability": "moegliche_auswirkung",
+      "rationale": "Abgeleitet aus dem dokumentierten Nachteil längerer Kanalführung und den offenen Fragen zu Montagefenster und Terminplan – keine bestätigte Terminverschiebung in den Quellen.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Fragen 4–5"
+        },
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "§ 1 Bauleitung – Benötigte Informationen"
+        }
+      ],
+      "relatedTaskIds": ["A-10-04"],
+      "suggestedVisualization": "timeline"
+    },
+    {
+      "id": "imp-elektro-pruefung-tr-c1",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "elektrotechnik",
+      "title": "Elektroplanung für TR-C1 prüfen",
+      "description": "Leitungswege, Anschlusspositionen und Schaltschrankzuordnung (Bezug SS-UG-03) müssen für den Standort TR-C1 geprüft werden. Die formale Freigabe der aktualisierten Elektroplanung steht aus.",
+      "reliability": "belegt",
+      "rationale": "Explizit als Folgeprüfung und offene Frage im Meeting KW 11 sowie als Aufgabe A-11-02 dokumentiert.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Elektrotechnik / § TOP 5 Frage 1"
+        },
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-11-02"
+        }
+      ],
+      "relatedTaskIds": ["A-11-02"],
+      "suggestedVisualization": "diff_list"
+    },
+    {
+      "id": "imp-elektro-trasse-ueberholt",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "elektrotechnik",
+      "title": "Bisherige Trassenplanung TR-B2 ist überholt",
+      "description": "Die Abstimmung der Detailtrasse SS-UG-03 → TR-B2 (Aufgabe A-10-01) basiert auf dem alten Standort und ist als Planungsgrundlage überholt. Alte Planunterlagen dürfen nicht ungeprüft weiterverwendet werden.",
+      "reliability": "belegt",
+      "rationale": "Aufgabe A-10-01 ist in der Aufgabenliste als überholt markiert; ursprüngliche Anschlussrichtung TR-B2 ist in Projektbeschreibung und Technikdokument dokumentiert.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-01"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 3 Ursprünglicher elektrischer Anschluss und SS-UG-03"
+        }
+      ],
+      "relatedTaskIds": ["A-10-01", "A-11-02"],
+      "suggestedVisualization": "before_after"
+    },
+    {
+      "id": "imp-elektro-moegliche-trassenanpassung",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "elektrotechnik",
+      "title": "Mögliche Anpassung von Leitungswegen und Anschlüssen",
+      "description": "Weil sich der Zielraum der RLT ändert, könnten Leitungswege, Anschlusspositionen oder die konkrete Nutzung von SS-UG-03 angepasst werden müssen. Ob und in welchem Umfang, ist noch ungeprüft.",
+      "reliability": "moegliche_auswirkung",
+      "rationale": "Abgeleitet aus dem bisherigen Planbezug SS-UG-03 → TR-B2, dem neuen Standort TR-C1 und den Zuständigkeiten der Elektrotechnik. Keine bestätigten Querschnitte, Trassenlängen oder Schaltangaben in den Quellen.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 1 (Hinweis R. Hoffmann) / § TOP 4"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 6 Zusammenhang für die Wissensvertiefung"
+        }
+      ],
+      "relatedTaskIds": ["A-11-02"],
+      "suggestedVisualization": "impact_diagram"
+    },
+    {
+      "id": "imp-einkauf-beschaffungspruefung",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "einkauf",
+      "title": "Beschaffungsrelevanz mit Fachplanung klären",
+      "description": "Einkauf soll mit der Fachplanung klären, ob technische Spezifikation, Materialbedarf (insbesondere Kanäle) oder Liefertermin durch den Standortwechsel betroffen sein könnten.",
+      "reliability": "belegt",
+      "rationale": "Als vereinbarte Folgeprüfung im Meeting KW 11 und als Aufgabe A-11-03 dokumentiert.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Einkauf"
+        },
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-11-03"
+        }
+      ],
+      "relatedTaskIds": ["A-11-03", "A-10-02"],
+      "suggestedVisualization": "checklist"
+    },
+    {
+      "id": "imp-einkauf-moeglicher-materialbedarf",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "einkauf",
+      "title": "Möglicher Mehrbedarf an Kanalmaterial",
+      "description": "TR-C1 erfordert laut Meeting eine längere Kanalführung. Daraus könnte ein höherer Materialbedarf oder eine Anpassung der Anfrage entstehen – bestätigt ist das nicht.",
+      "reliability": "moegliche_auswirkung",
+      "rationale": "Abgeleitet aus dem dokumentierten Nachteil längerer Kanalführung und der offenen Frage zum Materialmehrbedarf. Keine Mengen, Kosten oder Bestelländerungen in den Quellen belegt.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 2 / § TOP 5 Frage 3"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 4 Räume TR-B2 und TR-C1"
+        }
+      ],
+      "relatedTaskIds": ["A-11-03"],
+      "suggestedVisualization": "diff_list"
+    },
+    {
+      "id": "imp-einkauf-liefertermin-offen",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "teamId": "einkauf",
+      "title": "Liefertermin KW 18 weiterhin unbestätigt",
+      "description": "Der genannte Liefertermin KW 18 ist nach wie vor nicht verbindlich bestätigt. Ob der Standortwechsel den Termin zusätzlich beeinflusst, ist offen.",
+      "reliability": "offen",
+      "rationale": "Lieferterminstatus ist in KW 10 und KW 11 belegt; Einfluss der Standortverlegung auf den Termin ist ausdrücklich ungeklärt.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 3"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 (Hinweis L. Meier)"
+        }
+      ],
+      "relatedTaskIds": ["A-10-02"],
+      "suggestedVisualization": "timeline"
+    }
+  ],
+  "notes": [
+    "reliability=belegt: in Meeting/Aufgaben als Prüfung oder Fakt dokumentiert (nicht gleichbedeutend mit abgeschlossenem Ergebnis).",
+    "reliability=moegliche_auswirkung: fachlich abgeleitet; UI muss als „möglich – prüfen“ kennzeichnen.",
+    "reliability=offen: fehlende Information oder unbestätigter Status.",
+    "Keine bestätigten Mehrkosten, Materialmengen oder Terminverschiebungen modelliert."
+  ]
+}

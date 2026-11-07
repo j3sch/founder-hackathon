@@ -1,0 +1,145 @@
+{
+  "topics": [
+    {
+      "id": "topic-rlt-elektro-position",
+      "question": "Warum beeinflusst die Position einer Lüftungsanlage die Elektroplanung?",
+      "shortAnswer": "Die RLT braucht elektrische Versorgung und Steuerung. In der bisherigen Planung führte der Anschlussweg von Schaltschrank SS-UG-03 nach TR-B2. Ändert sich der Aufstellort auf TR-C1, ändern sich typischerweise die Zielpunkte der Leitungswege – deshalb muss die Elektroplanung den neuen Standort prüfen und Pläne ggf. aktualisieren und freigeben lassen.",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "teamIds": ["elektrotechnik", "bauleitung"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 6 Zusammenhang für die Wissensvertiefung"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 3 Ursprünglicher elektrischer Anschluss und SS-UG-03"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Elektrotechnik"
+        }
+      ],
+      "glossaryTerms": [
+        "RLT",
+        "Technikraum (TR)",
+        "Schaltschrank",
+        "Kanalführung / Trasse",
+        "Fachplanungsfreigabe"
+      ],
+      "suggestedVisualization": "before_after",
+      "deepDiveSuitable": true
+    },
+    {
+      "id": "topic-standort-einkauf",
+      "question": "Warum können bauliche Änderungen Auswirkungen auf den Einkauf haben?",
+      "shortAnswer": "Wenn sich der Aufstellort ändert, können Geräteanforderungen, Kanalumfang oder Liefertermine betroffen sein. Im Campus-Nord-Fall ist eine längere Kanalführung nach TR-C1 dokumentiert; ob Spezifikation, Material oder Termin tatsächlich angepasst werden müssen, ist noch mit der Fachplanung zu klären – bestätigt sind solche Änderungen nicht.",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "teamIds": ["einkauf", "bauleitung"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Einkauf / § TOP 5 Fragen 2–3"
+        },
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "§ 3 Einkauf"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 4 Räume TR-B2 und TR-C1"
+        }
+      ],
+      "glossaryTerms": [
+        "RLT",
+        "Kanalführung / Trasse",
+        "Nachtrag / Änderungsbedarf",
+        "Fachplanungsfreigabe"
+      ],
+      "suggestedVisualization": "diff_list",
+      "deepDiveSuitable": true
+    },
+    {
+      "id": "topic-gewerke-abhaengigkeiten",
+      "question": "Wie entstehen Abhängigkeiten zwischen unterschiedlichen Baugewerken?",
+      "shortAnswer": "Eine Entscheidung in einem Gewerk (hier: neuer RLT-Standort durch Lüftung/Bauleitung) ändert oft Annahmen anderer Gewerke. Elektro braucht den Zielraum für Leitungswege; Einkauf braucht freigegebene Spezifikationen für Beschaffung; Bauleitung koordiniert Montagefenster. Solange Fachpläne nicht freigegeben sind, bleiben Folgeprüfungen offen.",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "teamIds": ["bauleitung", "elektrotechnik", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "Gemeinsame Arbeitsregel / Schnittstellen"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4 – Folgeprüfungen"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 1 Grundlegende Funktion der RLT-Anlage"
+        }
+      ],
+      "glossaryTerms": [
+        "Technikraum (TR)",
+        "Wartungsfläche",
+        "Fachplanungsfreigabe",
+        "Nachtrag / Änderungsbedarf"
+      ],
+      "suggestedVisualization": "impact_diagram",
+      "deepDiveSuitable": true
+    },
+    {
+      "id": "topic-beschluss-vs-freigabe",
+      "question": "Was unterscheidet einen Meeting-Beschluss von einer Ausführungsfreigabe?",
+      "shortAnswer": "Im Meeting KW 11 wurde der Standort TR-C1 beschlossen. Das steuert die weitere Abstimmung, ersetzt aber nicht die formale Freigabe aktualisierter Fach- oder Ausführungspläne. Die aktualisierte Elektro-/Montageplanung und die spezifikationsseitige Bestätigung für TR-C1 sind in den Quellen ausdrücklich offen.",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "teamIds": ["bauleitung", "elektrotechnik", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 3 – Hinweis zum Status"
+        },
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "Gemeinsame Arbeitsregel"
+        }
+      ],
+      "glossaryTerms": ["Fachplanungsfreigabe"],
+      "suggestedVisualization": "timeline",
+      "deepDiveSuitable": false
+    },
+    {
+      "id": "topic-warum-tr-b2-ungeeignet",
+      "question": "Warum reicht TR-B2 für die vorgesehene RLT nicht mehr aus?",
+      "shortAnswer": "Nach dem Aufmaß begrenzen eine nachträglich eingebaute Server-Nische und zusätzliche Brandschutztüren den nutzbaren Raum. Das vorgesehene Gerät inklusive Wartungsflächen passt nicht ausreichend hinein. Ein kleineres Gerät wäre für ca. 18.000 m³/h ungeeignet.",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "teamIds": ["bauleitung", "elektrotechnik", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 1"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 5 Relevante Begriffe – Wartungsfläche"
+        }
+      ],
+      "glossaryTerms": ["RLT", "Technikraum (TR)", "Wartungsfläche"],
+      "suggestedVisualization": "before_after",
+      "deepDiveSuitable": false
+    }
+  ]
+}

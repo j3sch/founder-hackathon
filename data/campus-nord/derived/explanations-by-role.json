@@ -1,0 +1,245 @@
+{
+  "decisionId": "dec-rlt-standort-tr-c1",
+  "sharedFacts": {
+    "previousState": "Installationsort TR-B2",
+    "newState": "Installationsort TR-C1",
+    "rationaleSummary": "TR-B2 zu klein wegen Server-Nische und Brandschutztüren; Gerät inkl. Wartung passt nicht; kleineres Gerät für ca. 18.000 m³/h ungeeignet; TR-C1 mehr Fläche, längere Kanalführung.",
+    "resolutionStatus": "im_meeting_beschlossen",
+    "approvalStatus": "offen",
+    "note": "Alle sechs Erklärungen nutzen dieselbe Faktenbasis; nur Priorisierung, Tiefe und Darstellung variieren."
+  },
+  "explanations": [
+    {
+      "id": "expl-bauleitung-einfach",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "bauleitung",
+      "knowledgeLevel": "einfach",
+      "headline": "Die Lüftungsanlage kommt in einen anderen Technikraum",
+      "whatHappened": "Im Meeting der KW 11 wurde beschlossen: Die zentrale Lüftungsanlage (RLT) wird nicht mehr in Raum TR-B2, sondern in Raum TR-C1 im Untergeschoss Ostflügel aufgestellt.",
+      "why": "In TR-B2 ist nach dem Einbau einer Server-Nische und zusätzlicher Brandschutztüren zu wenig Platz für Gerät und Wartung. Ein kleineres Gerät würde die geplante Luftmenge nicht schaffen. TR-C1 hat mehr Platz – die Luftkanäle werden dafür länger.",
+      "relevanceForRole": "Als Bauleitung koordinierst du die Gewerke. Du solltest wissen, dass der Standortwechsel beschlossen ist, die Ausführungspläne aber noch nicht freigegeben sind, und dass Montageablauf sowie beteiligte Gewerke geprüft werden müssen.",
+      "backgroundKnowledge": "Eine RLT ist die zentrale Anlage, die Büros mit aufbereiteter Luft versorgt. Technikräume brauchen Platz nicht nur für das Gerät, sondern auch zum Warten. Wenn der Raum wechselt, müssen oft mehrere Teams ihre Pläne anpassen.",
+      "openCheckQuestions": [
+        "Ist die Montageabfolge für TR-C1 mit allen Gewerken abgestimmt?",
+        "Bleibt das geplante Montagefenster KW 19–21 realistisch?",
+        "Welche Fachpläne fehlen noch zur Freigabe?"
+      ],
+      "priorityImpactIds": [
+        "imp-bau-folgepruefung-montage",
+        "imp-bau-moegliche-terminfolge"
+      ],
+      "priorityTopicIds": [
+        "topic-warum-tr-b2-ungeeignet",
+        "topic-gewerke-abhaengigkeiten",
+        "topic-beschluss-vs-freigabe"
+      ],
+      "suggestedVisualization": "impact_diagram",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 3–5"
+        }
+      ]
+    },
+    {
+      "id": "expl-bauleitung-fachlich",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "bauleitung",
+      "knowledgeLevel": "fachlich",
+      "headline": "RLT-Standortbeschluss TR-B2 → TR-C1 – Freigaben und Schnittstellen offen",
+      "whatHappened": "Meeting-Beschluss KW 11 (2026-03-12): Installationsort der zentralen RLT von TR-B2 (UG West) nach TR-C1 (UG Ost). resolutionStatus: im_meeting_beschlossen; approvalStatus der aktualisierten Fach-/Ausführungsplanung: offen.",
+      "why": "Aufmaß: Server-Nische und Brandschutztüren begrenzen nutzbare Aufstell-/Wartungsfläche in TR-B2. Vorgesehenes Gerät (ca. 18.000 m³/h) inkl. Wartung nicht darstellbar; Downsizing fachlich ungeeignet. TR-C1: mehr Aufstellfläche, längere Kanalführung nachzuziehen.",
+      "relevanceForRole": "Steuerung der Folgeprüfungen: A-11-01 (Kanal/Aufstellung), A-10-04 (Montagefenster KW 19–21 plausibilisieren), Abstimmung Elektro A-11-02 und Einkauf A-11-03. Keine belastbaren Mehrkosten oder Terminverschiebungen in den Quellen – Auftraggeberkommunikation entsprechend vorsichtig halten.",
+      "backgroundKnowledge": "Abhängigkeitskette: Standort → Kanalführung (Lüftung) → Leitungstrassen/SS-UG-03 (Elektro) → Spezifikation/Lieferumfang (Einkauf) → Montagefenster (Bauleitung). Meeting-Beschluss ≠ Planfreigabe.",
+      "openCheckQuestions": [
+        "Stand A-11-01: Kanaltrasse/Aufstellung TR-C1 bestätigt?",
+        "Plausibilität Montagefenster KW 19–21 nach Standortwechsel?",
+        "Welche offenen Freigaben blockieren die Ausführung?",
+        "Gibt es belastbare Aussagen zu Terminplan/Kosten? (Bisher: nein)"
+      ],
+      "priorityImpactIds": [
+        "imp-bau-folgepruefung-montage",
+        "imp-elektro-pruefung-tr-c1",
+        "imp-einkauf-beschaffungspruefung",
+        "imp-bau-moegliche-terminfolge"
+      ],
+      "priorityTopicIds": [
+        "topic-gewerke-abhaengigkeiten",
+        "topic-beschluss-vs-freigabe"
+      ],
+      "suggestedVisualization": "timeline",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 3–5 / Beschlüsse"
+        },
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-04, A-11-01"
+        }
+      ]
+    },
+    {
+      "id": "expl-elektrotechnik-einfach",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "elektrotechnik",
+      "knowledgeLevel": "einfach",
+      "headline": "Die Lüftungsanlage steht woanders – Elektropläne prüfen",
+      "whatHappened": "Die zentrale Lüftungsanlage soll jetzt in Technikraum TR-C1 stehen, nicht mehr in TR-B2. Das wurde im Meeting beschlossen. Die neuen Elektropläne dafür sind noch nicht freigegeben.",
+      "why": "In TR-B2 fehlt Platz für Gerät und Wartung. Deshalb der Wechsel nach TR-C1.",
+      "relevanceForRole": "Die elektrische Versorgung der Anlage war bisher zum alten Raum TR-B2 geplant (vom Schaltschrank SS-UG-03). Weil der Zielraum wechselt, können Leitungswege und Anschlüsse betroffen sein. Bitte keine alten Planunterlagen ungeprüft weiterverwenden – erst Prüfung und Freigabe abwarten.",
+      "backgroundKnowledge": "Die Lüftungsanlage braucht Strom und Steuerleitungen. Diese führen typischerweise von einem Schaltschrank zum Aufstellort. Ändert sich der Aufstellort, ändert sich oft auch der Leitungsweg – ähnlich wie bei einem Umzug eines großen Geräts im Haus.",
+      "openCheckQuestions": [
+        "Wurde die Elektroplanung für TR-C1 schon geprüft?",
+        "Gibt es eine formale Freigabe der aktualisierten Pläne?",
+        "Ist die alte Aufgabe „Trasse nach TR-B2“ als überholt markiert?"
+      ],
+      "priorityImpactIds": [
+        "imp-elektro-pruefung-tr-c1",
+        "imp-elektro-trasse-ueberholt",
+        "imp-elektro-moegliche-trassenanpassung"
+      ],
+      "priorityTopicIds": [
+        "topic-rlt-elektro-position",
+        "topic-beschluss-vs-freigabe"
+      ],
+      "suggestedVisualization": "before_after",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 3–4"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 6"
+        }
+      ]
+    },
+    {
+      "id": "expl-elektrotechnik-fachlich",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "elektrotechnik",
+      "knowledgeLevel": "fachlich",
+      "headline": "Planannahme SS-UG-03 → TR-B2 überholt – Prüfung TR-C1 / Freigabe offen",
+      "whatHappened": "Beschluss KW 11: RLT-Installationsort TR-C1 statt TR-B2. Bisherige Elektro-Planungsannahme: Zuleitung/Steuerung von SS-UG-03 in Richtung TR-B2. Aufgabe A-10-01 (Detailtrasse TR-B2) = überholt; A-11-02 = Elektroplanung TR-C1 prüfen.",
+      "why": "Aufmaß TR-B2: nutzbare Fläche durch Server-Nische und Brandschutztüren unzureichend für Gerät inkl. Wartung bei ca. 18.000 m³/h.",
+      "relevanceForRole": "Diff der dokumentierten Annahmen: Zielraum gewechselt; Schaltschrankbezug SS-UG-03 als bisherige Referenz belegt, konkrete Trasse/Anschlusspositionen für TR-C1 ungeprüft. Keine freigegebene Ausführungsplanung in den Quellen. Mögliche Anpassung von Leitungswegen und Anschlüssen als moegliche_auswirkung markieren – nicht als bestätigte Änderung.",
+      "backgroundKnowledge": "Zusammenhang RLT ↔ Elektro: Versorgungs- und Steueranschluss folgen dem Aufstellort. Vorher/Nachher nur für dokumentierte Annahmen (TR-B2 vs. TR-C1, SS-UG-03). Keine Querschnitte, Schaltfolgen oder Montageanweisungen ableiten.",
+      "openCheckQuestions": [
+        "Leitungswege und Anschlusspositionen TR-C1 geprüft?",
+        "Bleibt SS-UG-03 der maßgebliche Schaltschrank – oder nur bisherige Referenz?",
+        "Wann formale Freigabe der aktualisierten Elektroplanung?",
+        "Sind Bestandsunterlagen mit Ziel TR-B2 als überholt gekennzeichnet?"
+      ],
+      "priorityImpactIds": [
+        "imp-elektro-trasse-ueberholt",
+        "imp-elektro-pruefung-tr-c1",
+        "imp-elektro-moegliche-trassenanpassung"
+      ],
+      "priorityTopicIds": [
+        "topic-rlt-elektro-position",
+        "topic-beschluss-vs-freigabe"
+      ],
+      "suggestedVisualization": "diff_list",
+      "sourceRefs": [
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 2–3, § 6"
+        },
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-01, A-11-02"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4–5"
+        }
+      ]
+    },
+    {
+      "id": "expl-einkauf-einfach",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "einkauf",
+      "knowledgeLevel": "einfach",
+      "headline": "Standortwechsel der Lüftung – Beschaffung noch klären",
+      "whatHappened": "Die Lüftungsanlage soll in einen anderen Technikraum (TR-C1 statt TR-B2). Das ist im Meeting beschlossen. Ob sich dadurch Bestellung oder Lieferumfang ändert, ist noch nicht entschieden.",
+      "why": "Im alten Raum ist zu wenig Platz. Der neue Raum braucht längere Luftkanäle.",
+      "relevanceForRole": "Gerät und Kanäle sind angefragt; der Liefertermin KW 18 ist noch nicht verbindlich. Du solltest mit der Fachplanung klären, ob Spezifikation, Kanalmaterial oder Termin betroffen sein könnten – bevor etwas verbindlich bestellt oder geändert wird. Kosten oder Mehrbedarf sind bisher nicht bestätigt.",
+      "backgroundKnowledge": "Wenn eine große Anlage woanders steht, können mehr oder andere Kanäle nötig sein. Das betrifft oft die Beschaffung – aber erst, wenn die Fachplanung die neuen Angaben freigibt. Ein Meeting-Beschluss allein ist noch keine Bestellgrundlage.",
+      "openCheckQuestions": [
+        "Ist die Gerätespezifikation für TR-C1 bestätigt?",
+        "Muss die Anfrage wegen längerer Kanäle angepasst werden?",
+        "Liegt eine verbindliche Lieferantenbestätigung für KW 18 vor?"
+      ],
+      "priorityImpactIds": [
+        "imp-einkauf-beschaffungspruefung",
+        "imp-einkauf-moeglicher-materialbedarf",
+        "imp-einkauf-liefertermin-offen"
+      ],
+      "priorityTopicIds": [
+        "topic-standort-einkauf",
+        "topic-beschluss-vs-freigabe"
+      ],
+      "suggestedVisualization": "checklist",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4–5"
+        },
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 3"
+        }
+      ]
+    },
+    {
+      "id": "expl-einkauf-fachlich",
+      "decisionId": "dec-rlt-standort-tr-c1",
+      "role": "einkauf",
+      "knowledgeLevel": "fachlich",
+      "headline": "Beschaffungs-Diff: Anfragebestand vs. offene TR-C1-Klärungen",
+      "whatHappened": "Meeting-Beschluss: RLT-Standort TR-C1. Bisher angefragt: Gerät + Kanäle; Liefertermin KW 18 genannt, nicht bestätigt. Keine Bestellung ohne freigegebene Spezifikation (KW-10-Beschluss weiterhin relevant).",
+      "why": "TR-B2 räumlich ungeeignet (Server-Nische, Brandschutztüren, Wartungsflächen). TR-C1: längere Kanalführung dokumentiert als Planungsnachteil.",
+      "relevanceForRole": "Gegenüberstellung: (A) dokumentierter Anfrage-/Terminstand vs. (B) zu bestätigende Angaben nach Standortwechsel. A-11-03: Spezifikation, Materialbedarf (Kanäle), Liefertermin mit Fachplanung klären. Möglicher Kanalmehrbedarf = moegliche_auswirkung, nicht Fakt. Keine Mehrkosten in Quellen.",
+      "backgroundKnowledge": "Beschaffungsrelevanz entsteht über geänderte fachplanerische Vorgaben (Aufstellort → Kanaltrasse → Lieferumfang), nicht allein durch den Meeting-Text. Parallel A-10-02 (Lieferantenrückmeldung) weiterverfolgen.",
+      "openCheckQuestions": [
+        "Gerätespezifikation TR-C1 freigegeben/bestätigt?",
+        "Kanalumfang: Anfrageanpassung nötig? (Status: offen)",
+        "Liefertermin KW 18: verbindliche Bestätigung? Einfluss Standortwechsel?",
+        "Abhängigkeit zu A-11-01 (Kanaltrasse) berücksichtigt?"
+      ],
+      "priorityImpactIds": [
+        "imp-einkauf-beschaffungspruefung",
+        "imp-einkauf-liefertermin-offen",
+        "imp-einkauf-moeglicher-materialbedarf"
+      ],
+      "priorityTopicIds": [
+        "topic-standort-einkauf",
+        "topic-gewerke-abhaengigkeiten"
+      ],
+      "suggestedVisualization": "diff_list",
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-02, A-11-03"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4–5"
+        }
+      ]
+    }
+  ]
+}

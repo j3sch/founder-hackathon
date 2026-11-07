@@ -1,0 +1,155 @@
+{
+  "description": "Erwartete Verlässlichkeits- und Freigabestatus für Kernaussagen. Dient der Prüfung, dass KI/UI Fakten, Ableitungen, Lücken und Überholtes trennt.",
+  "reliabilityLegend": {
+    "belegt": "Aussage steht nachvollziehbar in einer Quelle",
+    "moegliche_auswirkung": "Aus Fakten/Zuständigkeiten abgeleitet, ungeprüft",
+    "offen": "Information oder Freigabe fehlt",
+    "ueberholt": "Frühere Planungsannahme durch neuere Entscheidung ersetzt"
+  },
+  "statements": [
+    {
+      "id": "st-decision-location",
+      "statement": "Die RLT soll in TR-C1 statt TR-B2 installiert werden.",
+      "reliability": "belegt",
+      "approvalStatus": "offen",
+      "resolutionStatus": "im_meeting_beschlossen",
+      "evidence": ["meeting-kw11-lueftung.md § TOP 3"],
+      "mustNotBeLabeledAs": ["zur_ausfuehrung_freigegeben"]
+    },
+    {
+      "id": "st-rationale-space",
+      "statement": "TR-B2 hat wegen Server-Nische und Brandschutztüren unzureichende Aufstell-/Wartungsfläche.",
+      "reliability": "belegt",
+      "evidence": ["meeting-kw11-lueftung.md § TOP 1"]
+    },
+    {
+      "id": "st-volume-flow",
+      "statement": "Geplanter Volumenstrom ca. 18.000 m³/h.",
+      "reliability": "belegt",
+      "evidence": [
+        "projektbeschreibung.md § 3",
+        "meeting-kw10-planung.md § TOP 1"
+      ]
+    },
+    {
+      "id": "st-old-location-tr-b2",
+      "statement": "Installationsort ist TR-B2.",
+      "reliability": "ueberholt",
+      "evidence": [
+        "meeting-kw10-planung.md § Beschlüsse KW 10",
+        "ersetzt durch meeting-kw11-lueftung.md § TOP 3"
+      ]
+    },
+    {
+      "id": "st-electro-to-tr-b2",
+      "statement": "Elektrischer Anschluss ist nach TR-B2 ausgerichtet.",
+      "reliability": "ueberholt",
+      "evidence": [
+        "projektbeschreibung.md § 3",
+        "aufgaben.md A-10-01 (Status überholt)"
+      ]
+    },
+    {
+      "id": "st-task-a-10-01",
+      "statement": "Aufgabe Detailtrasse SS-UG-03 → TR-B2 ist aktuelle Arbeit.",
+      "reliability": "ueberholt",
+      "evidence": ["aufgaben.md A-10-01"]
+    },
+    {
+      "id": "st-electro-plan-approved",
+      "statement": "Aktualisierte Elektroplanung für TR-C1 ist freigegeben.",
+      "reliability": "offen",
+      "evidence": ["meeting-kw11-lueftung.md § TOP 5 Frage 1"],
+      "correctFraming": "Freigabe fehlt / noch ungeklärt"
+    },
+    {
+      "id": "st-spec-tr-c1-confirmed",
+      "statement": "Gerätespezifikation für TR-C1 ist bestätigt.",
+      "reliability": "offen",
+      "evidence": ["meeting-kw11-lueftung.md § TOP 5 Frage 2"]
+    },
+    {
+      "id": "st-delivery-kw18",
+      "statement": "Liefertermin KW 18 ist verbindlich.",
+      "reliability": "offen",
+      "note": "Genannter Termin ist belegt; Verbindlichkeit ist offen.",
+      "evidence": [
+        "meeting-kw10-planung.md § TOP 3",
+        "meeting-kw11-lueftung.md § TOP 4"
+      ],
+      "correctFraming": "genannt, nicht verbindlich bestätigt"
+    },
+    {
+      "id": "st-extra-cost",
+      "statement": "Durch die Verlegung entstehen Mehrkosten von X Euro.",
+      "reliability": "offen",
+      "evidence": ["meeting-kw11-lueftung.md § Beschlüsse Punkt 4"],
+      "mustNotBePresentedAsFact": true
+    },
+    {
+      "id": "st-schedule-slip",
+      "statement": "Der verbindliche Terminplan ist verschoben.",
+      "reliability": "offen",
+      "evidence": ["meeting-kw11-lueftung.md § TOP 5 Frage 5"],
+      "mustNotBePresentedAsFact": true
+    },
+    {
+      "id": "st-possible-duct-material",
+      "statement": "Es entsteht ein höherer Kanal-Materialbedarf.",
+      "reliability": "moegliche_auswirkung",
+      "evidence": [
+        "meeting-kw11-lueftung.md § TOP 2 (längere Kanalführung)",
+        "meeting-kw11-lueftung.md § TOP 5 Frage 3"
+      ],
+      "correctFraming": "möglich – mit Fachplanung prüfen"
+    },
+    {
+      "id": "st-possible-cable-routes",
+      "statement": "Leitungswege und Anschlüsse müssen angepasst werden.",
+      "reliability": "moegliche_auswirkung",
+      "note": "Die Prüfung ist belegt (A-11-02); das Ergebnis der Anpassung ist möglich/ungeprüft.",
+      "evidence": [
+        "meeting-kw11-lueftung.md § TOP 4",
+        "technik-rlt-elektro.md § 6"
+      ],
+      "correctFraming": "prüfen – Anpassung nicht bestätigt"
+    },
+    {
+      "id": "st-followup-einkauf-documented",
+      "statement": "Einkauf soll Beschaffungsrelevanz mit Fachplanung klären.",
+      "reliability": "belegt",
+      "evidence": [
+        "meeting-kw11-lueftung.md § TOP 4",
+        "aufgaben.md A-11-03"
+      ],
+      "note": "Dokumentierte Aufgabe/Prüfung, kein bestätigtes Beschaffungsergebnis."
+    },
+    {
+      "id": "st-montage-window",
+      "statement": "Montagefenster ist KW 19–21.",
+      "reliability": "belegt",
+      "note": "Als bisheriger Plan belegt; Plausibilität nach Standortwechsel offen – keine bestätigte Verschiebung.",
+      "relatedOpenId": "st-schedule-slip",
+      "evidence": [
+        "projektbeschreibung.md § 3",
+        "meeting-kw11-lueftung.md § TOP 4–5"
+      ]
+    }
+  ],
+  "uiExpectations": {
+    "labelsRequired": [
+      "Dokumentiert / belegt",
+      "Möglich – prüfen",
+      "Noch ungeklärt / offen",
+      "Vorheriger Stand / überholt"
+    ],
+    "separateAxes": [
+      "reliability (Belegstatus)",
+      "resolutionStatus / approvalStatus (Beschluss vs. Ausführungsfreigabe)"
+    ],
+    "forbidden": [
+      "Confidence-Prozentwerte ohne Kalibrierung",
+      "Ausführungshinweise als freigegebene Checkliste"
+    ]
+  }
+}

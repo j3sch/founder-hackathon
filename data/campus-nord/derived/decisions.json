@@ -1,0 +1,497 @@
+{
+  "project": {
+    "id": "proj-campus-nord",
+    "name": "Campus Nord",
+    "client": "Campus Nord GmbH",
+    "context": "Generalsanierung Bürogebäude: Modernisierung TGA (Lüftung, Elektro, Brandschutz), energetische Sanierung, teilweiser Weiterbetrieb.",
+    "phase": "Rohmontage TGA",
+    "projectWeek": 11,
+    "building": {
+      "yearBuilt": 1987,
+      "floors": 4,
+      "grossFloorAreaM2": 6200
+    },
+    "sourceIds": [
+      "src-projektbeschreibung",
+      "src-meeting-kw10",
+      "src-meeting-kw11",
+      "src-team",
+      "src-aufgaben",
+      "src-technik"
+    ]
+  },
+  "sources": [
+    {
+      "id": "src-projektbeschreibung",
+      "filename": "projektbeschreibung.md",
+      "title": "Projektbeschreibung Campus Nord",
+      "documentDate": "2026-02-24",
+      "version": "1.0",
+      "kind": "projektbeschreibung"
+    },
+    {
+      "id": "src-meeting-kw10",
+      "filename": "meeting-kw10-planung.md",
+      "title": "Protokoll Projektbesprechung KW 10",
+      "documentDate": "2026-03-05",
+      "version": "1.0",
+      "kind": "meeting"
+    },
+    {
+      "id": "src-meeting-kw11",
+      "filename": "meeting-kw11-lueftung.md",
+      "title": "Protokoll Projektbesprechung KW 11 – Standort RLT",
+      "documentDate": "2026-03-12",
+      "version": "1.0",
+      "kind": "meeting"
+    },
+    {
+      "id": "src-team",
+      "filename": "team-zustaendigkeiten.md",
+      "title": "Teamzuständigkeiten Campus Nord",
+      "documentDate": "2026-03-10",
+      "version": "1.1",
+      "kind": "team"
+    },
+    {
+      "id": "src-aufgaben",
+      "filename": "aufgaben.md",
+      "title": "Aufgabenliste TGA / RLT",
+      "documentDate": "2026-03-12",
+      "version": "1.0",
+      "kind": "aufgaben"
+    },
+    {
+      "id": "src-technik",
+      "filename": "technik-rlt-elektro.md",
+      "title": "Technische Hintergrundinformationen RLT und Elektro",
+      "documentDate": "2026-03-10",
+      "version": "1.0",
+      "kind": "technik"
+    }
+  ],
+  "teams": [
+    {
+      "id": "bauleitung",
+      "name": "Bauleitung",
+      "responsibilities": "Koordination der Gewerke, Termine, Abstimmungen und Kommunikation an den Auftraggeber.",
+      "typicalTasks": [
+        "Gewerkekoordination",
+        "Terminabstimmung",
+        "Protokollierung von Entscheidungen",
+        "Nachhalten offener Freigaben"
+      ],
+      "neededInformation": [
+        "Beschlossene Änderungen inkl. Begründung und Status",
+        "Offene Prüffragen der Fachbereiche",
+        "Mögliche Auswirkungen auf Montageabfolge"
+      ],
+      "interfaceTeamIds": ["elektrotechnik", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "§ 1 Bauleitung"
+        }
+      ]
+    },
+    {
+      "id": "elektrotechnik",
+      "name": "Elektrotechnik",
+      "responsibilities": "Elektrische Versorgung, Leitungswege, Schalt- und Steueranschlüsse der RLT.",
+      "typicalTasks": [
+        "Elektroplanung aktualisieren",
+        "Leitungstrassen festlegen",
+        "Anschluss an Schaltschränke abstimmen"
+      ],
+      "neededInformation": [
+        "Aktueller und bisheriger Installationsort der RLT",
+        "Gültige vs. überholte Planannahmen",
+        "Freigabestatus der Elektroplanung"
+      ],
+      "interfaceTeamIds": ["bauleitung", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "§ 2 Elektrotechnik"
+        }
+      ]
+    },
+    {
+      "id": "einkauf",
+      "name": "Einkauf",
+      "responsibilities": "Geräteanfragen, Komponentenbeschaffung, Liefertermine und mögliche Änderungsbedarfe.",
+      "typicalTasks": [
+        "Anfragen nachhalten",
+        "Liefertermine abstimmen",
+        "Spezifikationsänderungen mit Fachplanung klären"
+      ],
+      "neededInformation": [
+        "Noch zu bestätigende technische Angaben",
+        "Ob Materialbedarf, Spezifikation oder Liefertermin betroffen sein könnten",
+        "Klarstellung fehlender Kosten-/Terminbelege"
+      ],
+      "interfaceTeamIds": ["bauleitung", "elektrotechnik"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-team",
+          "filename": "team-zustaendigkeiten.md",
+          "section": "§ 3 Einkauf"
+        }
+      ]
+    }
+  ],
+  "planningAssumptions": [
+    {
+      "id": "assume-location-tr-b2",
+      "statement": "Installationsort der zentralen RLT ist TR-B2.",
+      "reliability": "ueberholt",
+      "supersededByDecisionId": "dec-rlt-standort-tr-c1",
+      "sourceRefs": [
+        {
+          "sourceId": "src-projektbeschreibung",
+          "filename": "projektbeschreibung.md",
+          "section": "§ 3 Ursprüngliche Planung der Lüftungsanlage"
+        },
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 2 / Beschlüsse KW 10"
+        }
+      ]
+    },
+    {
+      "id": "assume-volume-18000",
+      "statement": "Geplanter Volumenstrom ca. 18.000 m³/h.",
+      "reliability": "belegt",
+      "sourceRefs": [
+        {
+          "sourceId": "src-projektbeschreibung",
+          "filename": "projektbeschreibung.md",
+          "section": "§ 3 Ursprüngliche Planung der Lüftungsanlage"
+        },
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 1"
+        }
+      ]
+    },
+    {
+      "id": "assume-electro-ss-ug-03-to-tr-b2",
+      "statement": "Elektrische Zuleitung/Steuerung vom Schaltschrank SS-UG-03 in Richtung TR-B2 vorgesehen.",
+      "reliability": "ueberholt",
+      "note": "Schaltschrankbezug SS-UG-03 bleibt als bisherige Planungsreferenz belegt; die Zielrichtung TR-B2 ist überholt. Anpassung für TR-C1 ist offen.",
+      "supersededByDecisionId": "dec-rlt-standort-tr-c1",
+      "sourceRefs": [
+        {
+          "sourceId": "src-projektbeschreibung",
+          "filename": "projektbeschreibung.md",
+          "section": "§ 3 Ursprüngliche Planung der Lüftungsanlage"
+        },
+        {
+          "sourceId": "src-technik",
+          "filename": "technik-rlt-elektro.md",
+          "section": "§ 3 Ursprünglicher elektrischer Anschluss und SS-UG-03"
+        }
+      ]
+    },
+    {
+      "id": "assume-delivery-kw18",
+      "statement": "Liefertermin KW 18 für Gerät und Kanäle genannt, nicht verbindlich bestätigt.",
+      "reliability": "belegt",
+      "confirmationStatus": "offen",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 3"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4"
+        }
+      ]
+    },
+    {
+      "id": "assume-montage-kw19-21",
+      "statement": "Montagefenster der RLT laut bisherigem Plan KW 19–21.",
+      "reliability": "belegt",
+      "note": "Plausibilität nach Standortwechsel laut Meeting KW 11 zu prüfen; keine bestätigte Verschiebung dokumentiert.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-projektbeschreibung",
+          "filename": "projektbeschreibung.md",
+          "section": "§ 3 Ursprüngliche Planung der Lüftungsanlage"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4–5"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "dec-rlt-standort-tr-c1",
+      "projectId": "proj-campus-nord",
+      "title": "RLT-Standort: TR-B2 → TR-C1",
+      "summary": "Die zentrale Raumlufttechnische Anlage soll statt in Technikraum TR-B2 in Technikraum TR-C1 (Untergeschoss, Ostflügel) installiert werden.",
+      "previousState": "Installationsort TR-B2 (UG, Westtrakt)",
+      "newState": "Installationsort TR-C1 (UG, Ostflügel)",
+      "rationale": "Nachträglich eingebaute Server-Nische und zusätzliche Brandschutztüren begrenzen den nutzbaren Raum in TR-B2. Die vorgesehene Anlage inkl. Wartungsflächen passt dort nicht ausreichend hinein. Ein kleineres Gerät wäre für die vorgesehene Luftmenge (ca. 18.000 m³/h) ungeeignet. TR-C1 bietet mehr Aufstellfläche; die längere Kanalführung wird bewusst in Kauf genommen und nachgezogen.",
+      "meetingDate": "2026-03-12",
+      "reliability": "belegt",
+      "resolutionStatus": "im_meeting_beschlossen",
+      "approvalStatus": "offen",
+      "affectedTeamIds": ["bauleitung", "elektrotechnik", "einkauf"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 3 – Beschluss Standortverlegung",
+          "excerpt": "Die zentrale RLT-Anlage wird statt in Technikraum TR-B2 in Technikraum TR-C1 (Untergeschoss, Ostflügel) installiert."
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 1 – Rückblick und Aufmaß TR-B2",
+          "excerpt": "Server-Nische und Brandschutztüren begrenzen den nutzbaren Raum; Gerät inkl. Wartungsflächen passt nicht ausreichend."
+        }
+      ],
+      "supersedesIds": [
+        "assume-location-tr-b2",
+        "assume-electro-ss-ug-03-to-tr-b2"
+      ],
+      "openQuestionIds": [
+        "oq-elektroplan-freigabe",
+        "oq-geraetespezifikation-tr-c1",
+        "oq-materialmehrbedarf",
+        "oq-montagefenster",
+        "oq-terminplan-kosten"
+      ]
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "oq-elektroplan-freigabe",
+      "question": "Wann liegt die aktualisierte Elektroplanung für TR-C1 vor und wer gibt sie formal frei?",
+      "teamId": "elektrotechnik",
+      "reliability": "offen",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Frage 1"
+        }
+      ]
+    },
+    {
+      "id": "oq-geraetespezifikation-tr-c1",
+      "question": "Ist die Gerätespezifikation für den Aufstellort TR-C1 bestätigt?",
+      "teamId": "einkauf",
+      "reliability": "offen",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Frage 2"
+        }
+      ]
+    },
+    {
+      "id": "oq-materialmehrbedarf",
+      "question": "Entsteht durch die längere Kanalführung ein Materialmehrbedarf, und muss die Anfrage angepasst werden?",
+      "teamId": "einkauf",
+      "reliability": "offen",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Frage 3"
+        }
+      ]
+    },
+    {
+      "id": "oq-montagefenster",
+      "question": "Bleibt das Montagefenster KW 19–21 bestehen, oder muss der Bauablauf angepasst werden?",
+      "teamId": "bauleitung",
+      "reliability": "offen",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Frage 4"
+        }
+      ]
+    },
+    {
+      "id": "oq-terminplan-kosten",
+      "question": "Welche Auswirkungen hat die Verlegung auf den verbindlichen Terminplan und eventuelle Mehrkosten?",
+      "teamId": "bauleitung",
+      "reliability": "offen",
+      "note": "In den Quellen keine belastbaren Angaben zu Kosten oder Terminverschiebung.",
+      "sourceRefs": [
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 5 Frage 5 / Beschlüsse KW 11 Punkt 4"
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "A-10-01",
+      "title": "Detailtrasse Elektro SS-UG-03 → TR-B2 abstimmen",
+      "description": "Detailtrasse und Anschlussposition der RLT vom Schaltschrank SS-UG-03 zum Installationsort TR-B2 abstimmen.",
+      "teamId": "elektrotechnik",
+      "status": "ueberholt",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-01"
+        },
+        {
+          "sourceId": "src-meeting-kw10",
+          "filename": "meeting-kw10-planung.md",
+          "section": "§ TOP 4"
+        }
+      ],
+      "supersededBy": {
+        "decisionId": "dec-rlt-standort-tr-c1",
+        "taskId": "A-11-02",
+        "reason": "Zielraum TR-B2 durch Beschluss TR-C1 ersetzt."
+      }
+    },
+    {
+      "id": "A-10-02",
+      "title": "Lieferantenrückmeldung RLT/Kanäle nachhalten",
+      "description": "Verbindliche Rückmeldung zum genannten Termin KW 18 und zum angefragten Lieferumfang nachhalten.",
+      "teamId": "einkauf",
+      "status": "in_bearbeitung",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-02"
+        }
+      ]
+    },
+    {
+      "id": "A-10-03",
+      "title": "Aufmaß nutzbare Fläche TR-B2",
+      "description": "Nutzbare Aufstell- und Wartungsfläche in TR-B2 inkl. Server-Nische und Brandschutztüren aufmessen.",
+      "teamId": "bauleitung",
+      "status": "erledigt",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-03"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 1"
+        }
+      ]
+    },
+    {
+      "id": "A-10-04",
+      "title": "Montagefenster KW 19–21 vorabstimmen",
+      "description": "Montagefenster der RLT mit beteiligten Gewerken vorabstimmen; nach Standortwechsel auf Plausibilität prüfen.",
+      "teamId": "bauleitung",
+      "status": "offen",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-10-04"
+        }
+      ]
+    },
+    {
+      "id": "A-11-01",
+      "title": "Kanaltrasse und Aufstellung TR-C1 ausarbeiten",
+      "description": "Aktualisierte Kanaltrasse für TR-C1 ausarbeiten und Geräteaufstellung bestätigen.",
+      "teamId": "bauleitung",
+      "status": "offen",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-11-01"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4"
+        }
+      ]
+    },
+    {
+      "id": "A-11-02",
+      "title": "Elektroplanung für Standort TR-C1 prüfen",
+      "description": "Leitungswege, Anschlusspositionen und Schaltschrankzuordnung (Bezug SS-UG-03) für TR-C1 prüfen. Formale Freigabe offen.",
+      "teamId": "elektrotechnik",
+      "status": "offen",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-11-02"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4–5"
+        }
+      ]
+    },
+    {
+      "id": "A-11-03",
+      "title": "Beschaffungsrelevanz TR-C1 mit Fachplanung klären",
+      "description": "Klären, ob Spezifikation, Materialbedarf (Kanäle) oder Liefertermin durch den Standortwechsel betroffen sein könnten.",
+      "teamId": "einkauf",
+      "status": "offen",
+      "origin": "dokumentiert",
+      "decisionIds": ["dec-rlt-standort-tr-c1"],
+      "dependsOnTaskIds": ["A-11-01", "A-10-02"],
+      "sourceRefs": [
+        {
+          "sourceId": "src-aufgaben",
+          "filename": "aufgaben.md",
+          "section": "A-11-03"
+        },
+        {
+          "sourceId": "src-meeting-kw11",
+          "filename": "meeting-kw11-lueftung.md",
+          "section": "§ TOP 4"
+        }
+      ]
+    }
+  ]
+}

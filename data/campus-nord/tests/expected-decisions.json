@@ -1,0 +1,86 @@
+{
+  "description": "Referenzergebnisse für die KI-Extraktion aus meeting-kw11-lueftung.md (und Abgleich mit übrigen Quellen).",
+  "primarySource": {
+    "filename": "meeting-kw11-lueftung.md",
+    "documentDate": "2026-03-12"
+  },
+  "mustDetect": {
+    "decisionId": "dec-rlt-standort-tr-c1",
+    "titleContains": ["RLT", "TR-C1"],
+    "previousState": {
+      "requiredTokens": ["TR-B2"],
+      "mustNotClaimAsCurrent": true
+    },
+    "newState": {
+      "requiredTokens": ["TR-C1"],
+      "optionalContext": ["Ostflügel", "Untergeschoss", "UG"]
+    },
+    "rationaleMustIncludeAnyOf": [
+      "Server-Nische",
+      "Brandschutztüren",
+      "Wartungsflächen",
+      "zu klein",
+      "nicht ausreichend",
+      "Aufstellfläche"
+    ],
+    "rationaleMustNotInvent": [
+      "konkrete Mehrkosten in Euro",
+      "verbindliche Terminverschiebung",
+      "freigegebene Elektroplanung",
+      "bestätigter Materialmehrbedarf in Metern"
+    ],
+    "affectedTeamsExpected": ["bauleitung", "elektrotechnik", "einkauf"],
+    "resolutionStatus": "im_meeting_beschlossen",
+    "approvalStatus": "offen",
+    "sourceRefsRequired": [
+      {
+        "filename": "meeting-kw11-lueftung.md",
+        "sectionHint": "TOP 3"
+      }
+    ]
+  },
+  "mustDistinguishFromKw10": {
+    "filename": "meeting-kw10-planung.md",
+    "statement": "In KW 10 ist TR-B2 noch der vereinbarte Installationsort; die Verlegung nach TR-C1 darf dort nicht als beschlossene Entscheidung erscheinen.",
+    "forbiddenAsDecisionInKw10": ["TR-C1 als beschlossener Standort"]
+  },
+  "supersededAssumptions": [
+    {
+      "id": "assume-location-tr-b2",
+      "statement": "Installationsort TR-B2",
+      "expectedReliability": "ueberholt",
+      "evidence": [
+        "meeting-kw10-planung.md § TOP 2 / Beschlüsse",
+        "meeting-kw11-lueftung.md § TOP 3"
+      ]
+    },
+    {
+      "id": "assume-electro-ss-ug-03-to-tr-b2",
+      "statement": "Anschlussrichtung SS-UG-03 → TR-B2",
+      "expectedReliability": "ueberholt",
+      "note": "SS-UG-03 als bisherige Referenz bleibt belegt; Ziel TR-B2 ist überholt.",
+      "evidence": [
+        "projektbeschreibung.md § 3",
+        "technik-rlt-elektro.md § 3",
+        "aufgaben.md A-10-01"
+      ]
+    }
+  ],
+  "documentedFollowUps": [
+    {
+      "teamId": "bauleitung",
+      "mustMention": ["Montageabfolge", "Montagefenster"],
+      "reliability": "belegt"
+    },
+    {
+      "teamId": "elektrotechnik",
+      "mustMention": ["Leitungswege", "SS-UG-03", "Freigabe"],
+      "reliability": "belegt"
+    },
+    {
+      "teamId": "einkauf",
+      "mustMention": ["Spezifikation", "Material", "Liefertermin"],
+      "reliability": "belegt"
+    }
+  ]
+}
